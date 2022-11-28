@@ -82,6 +82,10 @@ const char **texturePaths;
 
 //PARTICULAS
 float respawnCount = 0.0f;
+bool updateParticles = true;
+Particles rains;
+ParticleProps m_rain;
+Particles particles;
 
 //:::: OBJETOS :::://
 Camera camera(glm::vec3(2.0f, 1.5f, 4.0f));
@@ -91,6 +95,10 @@ Plane plane;
 
 //=======TEXT=======//
 TextRenderer* Text;
+
+//=======BILLBOARD=======//
+Billboard enemy;
+float enemyX, enemyY;
 
 //======DAY/NIGHT CYCLE AND WEATHER(RAIN)============//
 bool isDay = false; //TOGGLE

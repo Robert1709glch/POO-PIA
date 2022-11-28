@@ -95,6 +95,19 @@ int main()
         //==========TEXT==========//
         Text->RenderText("Holiwas", -0.45f, 0.7f, 0.001f, glm::vec3(0.0, 0.0, 0.0));
 
+        ////=======PARTICLES=======//
+        //rains = Particles("textures/particulas/rain.png");
+        ////MOVEMENT VALUES//
+        //m_rain.ColorBegin = { 254 / 255.0f, 212 / 255.0f, 123 / 255.0f, 1.0f };
+        //m_rain.ColorEnd = { 254 / 255.0f, 109 / 255.0f, 41 / 255.0f,  1.0f };
+        //m_rain.SizeVariation = 0.3f;
+        //m_rain.SizeBegin = 0.5f;
+        //m_rain.SizeEnd = 0.0f;
+        //m_rain.LifeTime = 1.0f;
+        //m_rain.Velocity = { 0.2f, 1.0f, 1.0f };
+        //m_rain.VelocityVariation = { 0.2f, 1.0f, 0.5f };
+        //m_rain.Position = { 0.0f, 0.0f, 0.0f };
+
         //=======WATER=======//
         if (animWaterY <= 4.0f && animWaterX <= 4.0f && !is_water_out) {
             animWaterX += 0.001f;
@@ -135,6 +148,7 @@ int main()
 
     //=======RAIN=======//
     rain.Release();
+    //rains.Release();
 
     //======WATER PLANE=========//
     plane.Release();
@@ -263,6 +277,26 @@ void initScene(Shader ourShader)
 
     //==========RAIN==========//
     rain = QuadTexture("textures/rain.png", 525.0f, 525.0f, 0, 0);
+    //DrawParticles()
+    //==========BILLBOARD==========//
+    //particles = Particles("textures/particulas.png");
+    enemy = Billboard("textures/enemigo.png", (float)SCR_WIDTH, (float)SCR_HEIGHT, 453.5f, 768.0f);//907.0f, 1536.0f
+    enemy.setPosition(glm::vec3(-4.0f, 0.2f, 0.0f));
+    enemy.setScale(1.5f);
+    
+    ////=======PARTICLES=======//
+    //rains = Particles("textures/particulas/rain.png");
+    ////MOVEMENT VALUES//
+    //m_rain.ColorBegin = { 254 / 255.0f, 212 / 255.0f, 123 / 255.0f, 1.0f };
+    //m_rain.ColorEnd = { 254 / 255.0f, 109 / 255.0f, 41 / 255.0f,  1.0f };
+    //m_rain.SizeVariation = 0.3f;
+    //m_rain.SizeBegin = 0.5f;
+    //m_rain.SizeEnd = 0.0f;
+    //m_rain.LifeTime = 1.0f;
+    //m_rain.Velocity = { 0.2f, 1.0f, 1.0f };
+    //m_rain.VelocityVariation = { 0.2f, 1.0f, 0.5f };
+    //m_rain.Position = { 0.0f, 0.0f, 0.0f };
+
 
     //==========GAME START==========//
     MessageBox(NULL, L"Encuentra las 3 llaves para poder escapar\nEnter o cualquier boton para continuar", L"START", MB_ICONHAND || MB_ICONHAND);
@@ -323,6 +357,8 @@ void loadEnviroment(Terrain *terrain, SkyBox *sky, glm::mat4 view, glm::mat4 pro
 
 }
 void loadAnim(glm::mat4 view, glm::mat4 projection) {
+
+    enemy.Draw(camera, round(enemyX), round(enemyY));
     //========WATER ANIMATION========//
     if (animWaterY <= 4.0f && animWaterX <= 4.0f && !is_water_out) {
         animWaterX += 0.001f;
@@ -382,6 +418,7 @@ void loadAnim(glm::mat4 view, glm::mat4 projection) {
     else {
         moveKey = false;
     }*/
+    
 }
 void drawModels(Shader *shader, glm::mat4 view, glm::mat4 projection)
 {
@@ -527,6 +564,18 @@ void setMultipleLight(Shader *shader, vector<glm::vec3> pointLightPositions)
     shader->setInt("maxRenderLights", 1);
 }
 
+//void DrawParticles(glm::mat4 view, glm::mat4 projection) {
+//    rains.OnUpdate(0.01f);
+//    rains.Draw(glm::vec3(-5.5f, 0.5f, -2.5f), view, projection);
+//
+//    if (respawnCount >= 5) {
+//        for (int i = 0; i < 25; i++)
+//            rains.Emit(m_rain);
+//        updateParticles = false;
+//        respawnCount = 0;
+//            
+//    }
+//}
 
 void collisions()
 {
