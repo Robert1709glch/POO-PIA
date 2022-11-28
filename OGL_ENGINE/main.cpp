@@ -230,7 +230,7 @@ void initScene(Shader ourShader)
     /*glm::vec3 keyPosition = models[1].getPosition();
     models[1].collbox.setPosition(keyPosition);
     models[1].collbox.setScale(glm::vec3(0.5, 0.5, 0.5));
-    models[1].collbox.defineCollisionBox();*/
+    models[1].collbox.defineCollisionBox();*//*AQUI ES DONDE DA ERROR*/
     //asi para los demas objetos a animar(BORRAR):)
     /*models[1].collbox.setPosition(glm::vec3(1, 1, 1));
     models[1].collbox.setScale(glm::vec3(1, 1, 1));
@@ -290,7 +290,7 @@ void loadEnviroment(Terrain *terrain, SkyBox *sky, glm::mat4 view, glm::mat4 pro
     //========RAIN ANIMATION========//
     if (changeSky >= 60 && changeSky <= 60.1) {
         mainLight = vec3(0.2);
-        sky->reloadTexture("5");    //file name with the other sky:)
+        //sky->reloadTexture("5");    //file name with the other sky:)
         //changeSprite = !changeSprite;
     }
     if (changeSky >= 30 && changeSky <= 30.1) {
@@ -298,11 +298,11 @@ void loadEnviroment(Terrain *terrain, SkyBox *sky, glm::mat4 view, glm::mat4 pro
     }
     if (changeSky >= 60 && changeSky <= 60.1) {
         mainLight = vec3(0.2);
-        sky->reloadTexture("5");    //file name with the other sky:)
+       // sky->reloadTexture("5");    //file name with the other sky:)
     }
     if (changeSky >= 90 && changeSky <= 90.1) {
         mainLight = vec3(0.15);
-        sky->reloadTexture("5");    //file name with the other sky:)
+        //sky->reloadTexture("5");    //file name with the other sky:)
         changeSprite = !changeSprite;
     }
     if (changeSky >= 150 && changeSky <= 150.1) {
