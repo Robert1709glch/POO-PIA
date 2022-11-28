@@ -98,12 +98,12 @@ bool changeSprite = false;
 float spriteX, spriteY;
 
 //===========PICK OBJECTS================//
-//vector<Model> pickModel;
+vector<Model> pickModel;
 bool pickKey = false;
 bool isColliding = false;
 
 //==========KEY ANIMATION==========//
-//bool moveKey = false;
+bool moveKey = false;
 
 
 //:::: VECTORES :::://
