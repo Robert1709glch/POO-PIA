@@ -89,6 +89,22 @@ Camera camera(glm::vec3(2.0f, 1.5f, 4.0f));
 //======AGUA============//
 Plane plane;
 
+//======DAY/NIGHT CYCLE AND WEATHER(RAIN)============//
+bool isDay = false; //TOGGLE
+bool changeSkybox = true;
+float changeSky = 0;
+QuadTexture rain;
+bool changeSprite = false;
+float spriteX, spriteY;
+
+//===========PICK OBJECTS================//
+//vector<Model> pickModel;
+bool pickKey = false;
+bool isColliding = false;
+
+//==========KEY ANIMATION==========//
+//bool moveKey = false;
+
 
 //:::: VECTORES :::://
 glm::vec3 force(0);

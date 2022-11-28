@@ -82,6 +82,9 @@ void processInput(GLFWwindow *window)
                 yJoy -= 50.5;
                 rotateCamInput(xJoy, yJoy);
             }
+            if (state.buttons[GLFW_GAMEPAD_BUTTON_X] == 1) {
+                //Instruction to pick an object(keys)
+            }
         }
     }
     else

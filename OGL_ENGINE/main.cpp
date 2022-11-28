@@ -69,6 +69,7 @@ int main()
         deltaTime = (currentFrame - lastFrame);
         lastFrame = currentFrame;
         respawnCount += 0.1;
+        changeSky += 0.1;
 
         //::::ENTRADA CONTROL:::://
         processInput(window);
@@ -127,6 +128,9 @@ int main()
     physicsEnviroment.Unregister(&piso);
     physicsEnviroment.Unregister(&pared);
 
+    //=======RAIN=======//
+    rain.Release();
+
     //======WATER PLANE=========//
     plane.Release();
     glfwTerminate();
@@ -177,24 +181,26 @@ void initScene(Shader ourShader)
     //models.push_back(Model("carroazul", "models/CarroAzul.obj", glm::vec3(-9.6, 0.7, -2), glm::vec3(0, 0, 0), 0.0f, initScale));
     //models.push_back(Model("van", "models/Van.obj", glm::vec3(12, 0.8, -4.5), glm::vec3(0, 90, 0), 0.0f, initScale));
     
-    models.push_back(Model("key", "models/key.obj", glm::vec3(7.25, 0.2, -1.66), glm::vec3(0, 0, 0), 0.0f, 0.1));
-    models.push_back(Model("bed", "models/bed.obj", glm::vec3(15.5, 0.5, -4.3), glm::vec3(0, 0, 0), 0.0f, 1.5f));
-    models.push_back(Model("couch", "models/couch.obj", glm::vec3(-10.8, 0.5, -6.0), glm::vec3(0, 0, 0), 0.0f, 1.0f));
-    models.push_back(Model("Bush", "models/Bush.obj", glm::vec3(-10.8, 0.5, -8.0), glm::vec3(0, 0, 0), 0.0f, 2.2f));
-    models.push_back(Model("closet", "models/closet.obj", glm::vec3(5.3, 0.5, 8.3), glm::vec3(0, 0, 0), 0.0f, 1.5f));
-    models.push_back(Model("Flower", "models/Flower.obj", glm::vec3(10.3, 1.2, 9.0), glm::vec3(0, 0, 0), 0.0f, 1.0f));
-    models.push_back(Model("Grass", "models/Grass.obj", glm::vec3(5.3, 0.5, 9.3), glm::vec3(0, 0, 0), 0.0f, 1.0f));//con initScale se pone su tamaño original
-    models.push_back(Model("Rama", "models/rama.obj", glm::vec3(2.6, 0.5, -4.3), glm::vec3(0, 0, 0), 0.0f, 2));
-    models.push_back(Model("stone", "models/stone.obj", glm::vec3(5.4, 0.5, 7.5), glm::vec3(0, 0, 0), 0.0f, initScale));
-    models.push_back(Model("Stump", "models/Stump.obj", glm::vec3(2, 1.5, 5.3), glm::vec3(0, 0, 0), 0.0f, initScale));
-    models.push_back(Model("tv", "models/tv.obj", glm::vec3(5.2, 0.5, 2.5), glm::vec3(0, 180, 0), 0.0f, 1));
-    models.push_back(Model("fire", "models/fire.obj", glm::vec3(-11.1, 0.5, 8.4), glm::vec3(0, 0, 0), 0.0f, 1));
-    models.push_back(Model("lights", "models/lights.obj", glm::vec3(-9.4, 0.5, 7.5), glm::vec3(0, 0, 0), 0.0f, 1));
-    models.push_back(Model("bath", "models/bath.obj", glm::vec3(-8.4, 0.5, -5.5), glm::vec3(0, 0, 0), 0.0f, 1));
-    models.push_back(Model("box", "models/box.obj", glm::vec3(-15.4, 0.5, 7.5), glm::vec3(0, 0, 0), 0.0f, 1));
+    models.push_back(Model("key", "models/key.obj", glm::vec3(7.25, 0.2, -1.66), glm::vec3(0, 0, 0), 0.0f, 0.1));//0.1
+    //models.push_back(Model("bed", "models/bed.obj", glm::vec3(15.5, 0.5, -4.3), glm::vec3(0, 0, 0), 0.0f, 1.5f));
+    //models.push_back(Model("couch", "models/couch.obj", glm::vec3(-10.8, 0.5, -6.0), glm::vec3(0, 0, 0), 0.0f, 1.0f));
+    //models.push_back(Model("Bush", "models/Bush.obj", glm::vec3(-10.8, 0.5, -8.0), glm::vec3(0, 0, 0), 0.0f, 2.2f));
+    //models.push_back(Model("closet", "models/closet.obj", glm::vec3(5.3, 0.5, 8.3), glm::vec3(0, 0, 0), 0.0f, 1.5f));
+    //models.push_back(Model("Flower", "models/Flower.obj", glm::vec3(10.3, 1.2, 9.0), glm::vec3(0, 0, 0), 0.0f, 1.0f));
+    //models.push_back(Model("Grass", "models/Grass.obj", glm::vec3(5.3, 0.5, 9.3), glm::vec3(0, 0, 0), 0.0f, 1.0f));//con initScale se pone su tamaño original
+    //models.push_back(Model("Rama", "models/rama.obj", glm::vec3(2.6, 0.5, -4.3), glm::vec3(0, 0, 0), 0.0f, 2));
+    //models.push_back(Model("stone", "models/stone.obj", glm::vec3(5.4, 0.5, 7.5), glm::vec3(0, 0, 0), 0.0f, initScale));
+    //models.push_back(Model("Stump", "models/Stump.obj", glm::vec3(2, 1.5, 5.3), glm::vec3(0, 0, 0), 0.0f, initScale));
+    //models.push_back(Model("tv", "models/tv.obj", glm::vec3(5.2, 0.5, 2.5), glm::vec3(0, 180, 0), 0.0f, 1));
+    //models.push_back(Model("fire", "models/fire.obj", glm::vec3(-11.1, 0.5, 8.4), glm::vec3(0, 0, 0), 0.0f, 1));
+    //models.push_back(Model("lights", "models/lights.obj", glm::vec3(-9.4, 0.5, 7.5), glm::vec3(0, 0, 0), 0.0f, 1));
+    //models.push_back(Model("bath", "models/bath.obj", glm::vec3(-8.4, 0.5, -5.5), glm::vec3(0, 0, 0), 0.0f, 1));
+    //models.push_back(Model("box", "models/box.obj", glm::vec3(-15.4, 0.5, 7.5), glm::vec3(0, 0, 0), 0.0f, 1));
+
+    //pickModel.push_back(Model("key", "models/key.obj", glm::vec3(7.25, 0.2, -1.66), glm::vec3(0, 0, 0), 0.0f, 0.1));
     //=======CONSTRUCTION===========//
    // models.push_back(Model("house", "models/house.obj", glm::vec3(2.21997, 3.18, -3.57007), glm::vec3(0, -269, 0), 0.0f, 1));
-    models.push_back(Model("house2", "models/house2.obj", glm::vec3(2.72, -0.1, -2), glm::vec3(0, 0, 0), 0.0f, initScale));
+    //models.push_back(Model("house2", "models/house2.obj", glm::vec3(2.72, -0.1, -2), glm::vec3(0, 0, 0), 0.0f, 1));
    /*
                                                               NOTE
                                     We need the .blend with all textures in the same path
@@ -219,6 +225,17 @@ void initScene(Shader ourShader)
     collbox = CollisionBox(glm::vec3(10.35, 5.41, 14.85), glm::vec3(0.3, 1, 3.6), colorCollbox);
     collboxes.insert(pair<int, pair<string, CollisionBox>>(3, pair<string, CollisionBox>("pared_frente_arriba", collbox)));
 
+    //OBJECT COLLISIONS
+    //==========KEY COLLISTION==========//
+    /*glm::vec3 keyPosition = models[1].getPosition();
+    models[1].collbox.setPosition(keyPosition);
+    models[1].collbox.setScale(glm::vec3(0.5, 0.5, 0.5));
+    models[1].collbox.defineCollisionBox();*/
+    //asi para los demas objetos a animar(BORRAR):)
+    /*models[1].collbox.setPosition(glm::vec3(1, 1, 1));
+    models[1].collbox.setScale(glm::vec3(1, 1, 1));
+    models[1].collbox.defineCollisionBox();*/
+
     //CREAMOS LOS LIGHTCUBES QUE ENREALIDAD SON COLLISION BOXES QUE NOS AYUDARAN A IDENTIFICAR LA POSICIÓN DE DONDE ESTAN
     glm::vec3 lScale(0.5);
     colorCollbox = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
@@ -237,6 +254,10 @@ void initScene(Shader ourShader)
     plane.setPosition(glm::vec3(20.5, -0.5, -10.5));                  //========POSITION OF THE WATER========//
     plane.setAngles(glm::vec3(90.0, 0.0, 0.0));                 //========ANGLE OF WATER==============//
     plane.setScale(glm::vec3(15.0));                            //========SCALE OF WATER IMAGE=======//
+
+
+    //==========RAIN==========//
+    rain = QuadTexture("textures/rain.png", 525.0f, 525.0f, 0, 0);
      
 }
 //:::: CONFIGURACIONES :::://
@@ -264,7 +285,29 @@ void loadEnviroment(Terrain *terrain, SkyBox *sky, glm::mat4 view, glm::mat4 pro
             lights.second.second.draw(view, projection);
 
     //======WATER ANIMATION=======//
-    //loadAnim(view, projection);
+    loadAnim(view, projection);
+
+    //========RAIN ANIMATION========//
+    if (changeSky >= 60 && changeSky <= 60.1) {
+        mainLight = vec3(0.2);
+        sky->reloadTexture("5");    //file name with the other sky:)
+        //changeSprite = !changeSprite;
+    }
+    if (changeSky >= 30 && changeSky <= 30.1) {
+        mainLight = vec3(0.25);
+    }
+    if (changeSky >= 60 && changeSky <= 60.1) {
+        mainLight = vec3(0.2);
+        sky->reloadTexture("5");    //file name with the other sky:)
+    }
+    if (changeSky >= 90 && changeSky <= 90.1) {
+        mainLight = vec3(0.15);
+        sky->reloadTexture("5");    //file name with the other sky:)
+        changeSprite = !changeSprite;
+    }
+    if (changeSky >= 150 && changeSky <= 150.1) {
+        mainLight = vec3(0.1);
+    }
 
 }
 void loadAnim(glm::mat4 view, glm::mat4 projection) {
@@ -283,6 +326,50 @@ void loadAnim(glm::mat4 view, glm::mat4 projection) {
             is_water_out = false;
         }
     }
+    //========RAIN ANIMATION========//
+    //Activate when it´s night
+    if (changeSprite) {
+        if (spriteX <= 2.0f) {
+            if (spriteX <= 4.0f) {
+                spriteX += 0.3f;
+            }
+            else {
+                spriteX = 0.0f;
+                spriteY += 1.0f;
+            }
+        }
+    else {
+        spriteX = 0.0f;
+        spriteY = 0.0f;
+    }
+        rain.changeSprite(round(spriteX), spriteY);
+        rain.Draw(glm::vec2(0.0f, 0.0f), 3.0);
+    }
+    //Always active
+    /*if (spriteX <= 2.0f) {
+        if (spriteX <= 4.0f) {
+            spriteX += 0.3f;
+        }
+        else {
+            spriteX = 0.0f;
+            spriteY += 1.0f;
+        }
+    }
+    else {
+        spriteX = 0.0f;
+        spriteY = 0.0f;
+    }
+    rain.changeSprite(round(spriteX), spriteY);
+    rain.Draw(glm::vec2(0.0f, 0.0f), 3.0);*/
+
+    //========KEY ANIMATION=========//
+    /*glm::vec3 keyPosition = models[1].getPosition();
+    if (keyPosition.x < 5.0f && !moveKey) {
+        keyPosition.x -= 0.010f;
+    }
+    else {
+        moveKey = false;
+    }*/
 }
 void drawModels(Shader *shader, glm::mat4 view, glm::mat4 projection)
 {
@@ -297,6 +384,15 @@ void drawModels(Shader *shader, glm::mat4 view, glm::mat4 projection)
         detectColls(&models[i].collbox, models[i].name, &camera, renderCollBox, collidedObject_callback);
     }
 }
+//void pickObjects(Shader* ourShader, Shader* selectShader, glm::mat4 projection) {
+//    //IF THERE IS A COLLISION
+//    glm::vec3 m = camera.Position + camera.Front * 1.2f;//POSITION OF CAMERA
+//    if (pickKey && isColliding) {
+//        selectShader->use();
+//        setSimpleLight(selectShader);
+//        pickModel[1].Draw(*selectShader);
+//    }
+//}
 
 void setSimpleLight(Shader *shader)
 {
