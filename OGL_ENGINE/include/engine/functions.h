@@ -1,6 +1,7 @@
 
 #include <engine/utils.h>
 #include <engine/variables.h>
+#include <Windows.h>
 
 
 //:::: CALLBACKS  Y FUNCIONES :::://
@@ -85,6 +86,9 @@ void processInput(GLFWwindow *window)
             if (state.buttons[GLFW_GAMEPAD_BUTTON_X] == 1) {
                 //Instruction to pick an object(keys)
             }
+            if (state.buttons[GLFW_GAMEPAD_BUTTON_START] == 1) {
+                MessageBox(NULL, L"Menu pausa\nPulse enter o un boton para continuar.", L"PAUSE", MB_ICONHAND || MB_ICONHAND);
+            }
         }
     }
     else
@@ -132,6 +136,17 @@ void processInput(GLFWwindow *window)
             skyPos -= camera.Right * glm::vec3(2);
             camera.ProcessKeyboard(RIGHT, deltaTime);
         }
+        /////////////////////////////////////
+        if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS) {
+            /*Sleep(5000);
+            while (GLFW_PRESS == 1) {
+                    int pause = 3000;
+                    Sleep(pause);
+                    pause += 3000;
+            }*/
+            MessageBox(NULL, L"Menu pausa\nPulse enter o un boton para continuar.", L"PAUSE", MB_ICONHAND || MB_ICONHAND);
+        }
+        /////////////////////////////////////
 
         isJoyStick = false;
         actionKeys(window);

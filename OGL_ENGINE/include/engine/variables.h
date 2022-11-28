@@ -89,6 +89,9 @@ Camera camera(glm::vec3(2.0f, 1.5f, 4.0f));
 //======AGUA============//
 Plane plane;
 
+//=======TEXT=======//
+TextRenderer* Text;
+
 //======DAY/NIGHT CYCLE AND WEATHER(RAIN)============//
 bool isDay = false; //TOGGLE
 bool changeSkybox = true;

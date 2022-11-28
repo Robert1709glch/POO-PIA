@@ -14,6 +14,7 @@
 #include <engine/textrenderer.h>
 #include <glad/glad.h>
 #include <iostream>
+#include <Windows.h>
 
 int main()
 {
@@ -90,6 +91,10 @@ int main()
         drawModels(&ourShader, view, projection);
         //:::: SKYBOX Y TERRENO:::://
         loadEnviroment(&terrain, &sky, view, projection);
+
+        //==========TEXT==========//
+        Text->RenderText("Holiwas", -0.45f, 0.7f, 0.001f, glm::vec3(0.0, 0.0, 0.0));
+
         //=======WATER=======//
         if (animWaterY <= 4.0f && animWaterX <= 4.0f && !is_water_out) {
             animWaterX += 0.001f;
@@ -258,6 +263,13 @@ void initScene(Shader ourShader)
 
     //==========RAIN==========//
     rain = QuadTexture("textures/rain.png", 525.0f, 525.0f, 0, 0);
+
+    //==========GAME START==========//
+    MessageBox(NULL, L"Encuentra las 3 llaves para poder escapar\nEnter o cualquier boton para continuar", L"START", MB_ICONHAND || MB_ICONHAND);
+
+    //=======TEXT=======//
+    Text = new TextRenderer(SCR_WIDTH, SCR_HEIGHT);
+    Text->Load("fonts/OpenSans-Italic.TTF", 60);
      
 }
 //:::: CONFIGURACIONES :::://
