@@ -200,7 +200,7 @@ void initScene(Shader ourShader)
     //models.push_back(Model("carroazul", "models/CarroAzul.obj", glm::vec3(-9.6, 0.7, -2), glm::vec3(0, 0, 0), 0.0f, initScale));
     //models.push_back(Model("van", "models/Van.obj", glm::vec3(12, 0.8, -4.5), glm::vec3(0, 90, 0), 0.0f, initScale));
     
-    models.push_back(Model("key", "models/key.obj", glm::vec3(7.25, 0.2, -1.66), glm::vec3(0, 0, 0), 0.0f, 0.1));//0.1
+    models.push_back(Model("key", "models/key.obj", glm::vec3(7.25, 0.2, -1.66), glm::vec3(0, 0, 0), 0.0f, initScale));//0.1
     //models.push_back(Model("bed", "models/bed.obj", glm::vec3(15.5, 0.5, -4.3), glm::vec3(0, 0, 0), 0.0f, 1.5f));
     //models.push_back(Model("couch", "models/couch.obj", glm::vec3(-10.8, 0.5, -6.0), glm::vec3(0, 0, 0), 0.0f, 1.0f));
     //models.push_back(Model("Bush", "models/Bush.obj", glm::vec3(-10.8, 0.5, -8.0), glm::vec3(0, 0, 0), 0.0f, 2.2f));
@@ -243,6 +243,8 @@ void initScene(Shader ourShader)
     collboxes.insert(pair<int, pair<string, CollisionBox>>(2, pair<string, CollisionBox>("pared_frente_der", collbox)));
     collbox = CollisionBox(glm::vec3(19.54, 1.89, 6.71), glm::vec3(5.18, 3.96, 0.5), colorCollbox);
     collboxes.insert(pair<int, pair<string, CollisionBox>>(3, pair<string, CollisionBox>("pared_frente_arriba", collbox)));
+    collbox = CollisionBox(glm::vec3(28.5604, 10, -0.8501), glm::vec3(9.3101, 0.49, 5), colorCollbox);
+    collboxes.insert(pair<int, pair<string, CollisionBox>>(4, pair<string, CollisionBox>("techo", collbox)));
 
     //OBJECT COLLISIONS
     //==========KEY COLLISTION==========//

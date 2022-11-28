@@ -618,4 +618,7 @@ void collidedObject_callback(string nameCollidedObject)
         keyPosition.z = 0;
         models[0].setPosition(keyPosition);
     }
+    if (n_key == true) {
+        MessageBox(NULL, L"1/0", L"LLAVE", MB_ICONHAND || MB_ICONHAND);
+    }
 }
