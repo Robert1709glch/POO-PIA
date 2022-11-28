@@ -98,7 +98,10 @@ TextRenderer* Text;
 
 //=======BILLBOARD=======//
 Billboard enemy;
-float enemyX, enemyY;
+float enemyX = 0.0f, enemyY = 0.0f, enemyZ = 0.0f;
+
+//=====JUGABILIDAD=====//
+bool n_key = false;
 
 //======DAY/NIGHT CYCLE AND WEATHER(RAIN)============//
 bool isDay = false; //TOGGLE

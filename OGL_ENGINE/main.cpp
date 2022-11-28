@@ -218,8 +218,8 @@ void initScene(Shader ourShader)
 
     //pickModel.push_back(Model("key", "models/key.obj", glm::vec3(7.25, 0.2, -1.66), glm::vec3(0, 0, 0), 0.0f, 0.1));
     //=======CONSTRUCTION===========//
-   // models.push_back(Model("house", "models/house.obj", glm::vec3(2.21997, 3.18, -3.57007), glm::vec3(0, -269, 0), 0.0f, 1));
-    //models.push_back(Model("house2", "models/house2.obj", glm::vec3(2.72, -0.1, -2), glm::vec3(0, 0, 0), 0.0f, 1));
+    //models.push_back(Model("house", "models/house.obj", glm::vec3(2.21997, 3.18, -3.57007), glm::vec3(0, -269, 0), 0.0f, 1));
+    models.push_back(Model("house2", "models/house2.obj", glm::vec3(2.72, -0.1, -2), glm::vec3(0, 0, 0), 0.0f, 1));
    /*
                                                               NOTE
                                     We need the .blend with all textures in the same path
@@ -235,13 +235,13 @@ void initScene(Shader ourShader)
     //CREAMOS TODAS  LAS CAJAS DE COLISION INDIVIDUALES
     CollisionBox collbox;
     glm::vec4 colorCollbox(0.41f, 0.2f, 0.737f, 0.06f);
-    collbox = CollisionBox(glm::vec3(25.97, 2.4, 11), glm::vec3(0.3, 5, 12.4), colorCollbox);
+    collbox = CollisionBox(glm::vec3(36.8693, 3.09, -0.860156), glm::vec3(0.3, 4.75, 10.1101), colorCollbox);
     collboxes.insert(pair<int, pair<string, CollisionBox>>(0, pair<string, CollisionBox>("pared_atras", collbox)));
-    collbox = CollisionBox(glm::vec3(9.88, 2.6, 7.45999), glm::vec3(0.3, 4.6, 7.6), colorCollbox);
+    collbox = CollisionBox(glm::vec3(14.96, 3.2, -4.02), glm::vec3(0.49, 7.01, 12.93), colorCollbox);
     collboxes.insert(pair<int, pair<string, CollisionBox>>(1, pair<string, CollisionBox>("pared_frente_izq", collbox)));
-    collbox = CollisionBox(glm::vec3(10.37, 2.8, 18.87), glm::vec3(0.3, 5.4, 1.2), colorCollbox);
+    collbox = CollisionBox(glm::vec3(25.0, 3.95, -13.27), glm::vec3(14.97, 8.11, 0.5), colorCollbox);
     collboxes.insert(pair<int, pair<string, CollisionBox>>(2, pair<string, CollisionBox>("pared_frente_der", collbox)));
-    collbox = CollisionBox(glm::vec3(10.35, 5.41, 14.85), glm::vec3(0.3, 1, 3.6), colorCollbox);
+    collbox = CollisionBox(glm::vec3(19.54, 1.89, 6.71), glm::vec3(5.18, 3.96, 0.5), colorCollbox);
     collboxes.insert(pair<int, pair<string, CollisionBox>>(3, pair<string, CollisionBox>("pared_frente_arriba", collbox)));
 
     //OBJECT COLLISIONS
@@ -355,9 +355,41 @@ void loadEnviroment(Terrain *terrain, SkyBox *sky, glm::mat4 view, glm::mat4 pro
         mainLight = vec3(0.1);
     }
 
+    glm::vec3(enemyPos) = enemy.getPosition();
+    glm::vec3(cameraPos) = camera.Position;
+    if (enemyPos.x < cameraPos.x && enemyPos.x > cameraPos.x) {
+        //enemy.setPosition(glm::vec3(+1, +0, +0));
+        enemyX += 1.0f;
+        enemyPos.x = enemyX;
+    }
+    if (enemyPos.x > cameraPos.x) {
+        enemyX -= 1.0f;
+        enemyPos.x = enemyX;
+    }
+    if (enemyPos.y < cameraPos.y) {
+        enemyY += 1.0f;
+        enemyPos.y = enemyY;
+    }
+    if (enemyPos.y > cameraPos.y) {
+        enemyY -= 1.0f;
+        enemyPos.y = enemyY;
+    }
+    if (enemyPos.z < cameraPos.z) {
+        enemyY += 1.0f;
+        enemyPos.z = enemyZ;
+    }
+    if (enemyPos.z > cameraPos.z) {
+        enemyY -= 1.0f;
+        enemyPos.z = enemyZ;
+    }
+    if (enemyPos.x == cameraPos.x && enemyPos.y == cameraPos.y && enemyPos.z == cameraPos.z) {
+        //activar el toque y la pantalla de perdido
+        //MessageBox(NULL, L"Te atraparon, perdiste", L"PERDISTE", MB_ICONHAND || MB_ICONHAND);
+    }
+
 }
 void loadAnim(glm::mat4 view, glm::mat4 projection) {
-
+    
     enemy.Draw(camera, round(enemyX), round(enemyY));
     //========WATER ANIMATION========//
     if (animWaterY <= 4.0f && animWaterX <= 4.0f && !is_water_out) {

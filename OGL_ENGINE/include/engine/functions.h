@@ -144,7 +144,7 @@ void processInput(GLFWwindow *window)
                     Sleep(pause);
                     pause += 3000;
             }*/
-            MessageBox(NULL, L"Menu pausa\nPulse enter o un boton para continuar.", L"PAUSE", MB_ICONHAND || MB_ICONHAND);
+            //MessageBox(NULL, L"Menu pausa\nPulse enter o un boton para continuar.", L"PAUSE", MB_ICONHAND || MB_ICONHAND);
         }
         /////////////////////////////////////
 
@@ -303,7 +303,7 @@ void actionKeys(GLFWwindow *window)
             system("cls");
             cout << "\nEl tipo de luz seleccionada es : " << lightTypes[lt] << endl;
         }
-        if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
+        if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS)
         {
             if (indexLight < pointLightPositions.size() - 1)
                 indexLight += 1;
@@ -610,4 +610,12 @@ void scroll_callback(GLFWwindow *window, double xoffset, double yoffset)
 void collidedObject_callback(string nameCollidedObject)
 {
     //SI OCURRE UNA COLISIÓN HACEMOS ALGO
+    if (nameCollidedObject == "key") {
+        n_key = true;
+        glm::vec3 keyPosition = models[0].getPosition();
+        keyPosition.x = 0;
+        keyPosition.y = 0;
+        keyPosition.z = 0;
+        models[0].setPosition(keyPosition);
+    }
 }
