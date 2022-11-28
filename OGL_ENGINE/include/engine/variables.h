@@ -102,6 +102,10 @@ float enemyX = 0.0f, enemyY = 0.0f, enemyZ = 0.0f;
 
 //=====JUGABILIDAD=====//
 bool n_key = false;
+bool n_key2 = false;
+bool n_key3 = false;
+bool n_exit = false;
+int keys = 0;
 
 //======DAY/NIGHT CYCLE AND WEATHER(RAIN)============//
 bool isDay = false; //TOGGLE

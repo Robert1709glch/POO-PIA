@@ -201,10 +201,13 @@ void initScene(Shader ourShader)
     //models.push_back(Model("van", "models/Van.obj", glm::vec3(12, 0.8, -4.5), glm::vec3(0, 90, 0), 0.0f, initScale));
     
     models.push_back(Model("key", "models/key.obj", glm::vec3(7.25, 0.2, -1.66), glm::vec3(0, 0, 0), 0.0f, initScale));//0.1
-    //models.push_back(Model("bed", "models/bed.obj", glm::vec3(15.5, 0.5, -4.3), glm::vec3(0, 0, 0), 0.0f, 1.5f));
-    //models.push_back(Model("couch", "models/couch.obj", glm::vec3(-10.8, 0.5, -6.0), glm::vec3(0, 0, 0), 0.0f, 1.0f));
-    //models.push_back(Model("Bush", "models/Bush.obj", glm::vec3(-10.8, 0.5, -8.0), glm::vec3(0, 0, 0), 0.0f, 2.2f));
-    //models.push_back(Model("closet", "models/closet.obj", glm::vec3(5.3, 0.5, 8.3), glm::vec3(0, 0, 0), 0.0f, 1.5f));
+    models.push_back(Model("key2", "models/key.obj", glm::vec3(8.0, 0.2, -1.66), glm::vec3(0, 0, 0), 0.0f, initScale));
+    models.push_back(Model("key3", "models/key.obj", glm::vec3(8.75, 0.2, -1.66), glm::vec3(0, 0, 0), 0.0f, initScale));
+    models.push_back(Model("key4", "models/key.obj", glm::vec3(0, 0.2, -1.66), glm::vec3(0, 0, 0), 0.0f, initScale));
+    models.push_back(Model("bed", "models/bed.obj", glm::vec3(16.79, 3.01, -11.4702), glm::vec3(0, 0, 0), 0.0f, 1.5f));
+    models.push_back(Model("couch", "models/couch.obj", glm::vec3(36.47, 0.6, 1.26), glm::vec3(0, -180, 0), 0.0f, 1.5f));
+    models.push_back(Model("Bush", "models/Bush.obj", glm::vec3(-0.659848, 0.5, 12.3203), glm::vec3(0, 0, 0), 0.0f, 2.2f));
+    models.push_back(Model("closet", "models/closet.obj", glm::vec3(17.8603, 4.28, -7.75018), glm::vec3(0, 0, 0), 0.0f, 2.0f));
     //models.push_back(Model("Flower", "models/Flower.obj", glm::vec3(10.3, 1.2, 9.0), glm::vec3(0, 0, 0), 0.0f, 1.0f));
     //models.push_back(Model("Grass", "models/Grass.obj", glm::vec3(5.3, 0.5, 9.3), glm::vec3(0, 0, 0), 0.0f, 1.0f));//con initScale se pone su tamaño original
     //models.push_back(Model("Rama", "models/rama.obj", glm::vec3(2.6, 0.5, -4.3), glm::vec3(0, 0, 0), 0.0f, 2));
@@ -274,7 +277,7 @@ void initScene(Shader ourShader)
 
     plane.setPosition(glm::vec3(20.5, -0.5, -10.5));                  //========POSITION OF THE WATER========//
     plane.setAngles(glm::vec3(90.0, 0.0, 0.0));                 //========ANGLE OF WATER==============//
-    plane.setScale(glm::vec3(15.0));                            //========SCALE OF WATER IMAGE=======//
+    plane.setScale(glm::vec3(150.0));                            //========SCALE OF WATER IMAGE=======//
 
 
     //==========RAIN==========//

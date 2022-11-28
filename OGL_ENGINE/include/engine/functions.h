@@ -619,6 +619,49 @@ void collidedObject_callback(string nameCollidedObject)
         models[0].setPosition(keyPosition);
     }
     if (n_key == true) {
-        MessageBox(NULL, L"1/0", L"LLAVE", MB_ICONHAND || MB_ICONHAND);
+        MessageBox(NULL, L"1/3", L"LLAVE", MB_ICONHAND || MB_ICONHAND);
+        n_key = false;
+        keys + 1;
     }
+    if (nameCollidedObject == "key2") {
+        n_key2 = true;
+        glm::vec3 keyPosition2 = models[1].getPosition();
+        keyPosition2.x = 0;
+        keyPosition2.y = 0;
+        keyPosition2.z = 0;
+        models[1].setPosition(keyPosition2);
+    }
+    if (n_key2 == true) {
+        MessageBox(NULL, L"2/3", L"LLAVE", MB_ICONHAND || MB_ICONHAND);
+        n_key2 = false;
+        keys + 1;
+    }
+    if (nameCollidedObject == "key3") {
+        n_key3 = true;
+        glm::vec3 keyPosition3 = models[2].getPosition();
+        keyPosition3.x = 0;
+        keyPosition3.y = 0;
+        keyPosition3.z = 0;
+        models[2].setPosition(keyPosition3);
+    }    
+    if (n_key3 == true) {
+        MessageBox(NULL, L"3/3\nESCAPA!", L"LLAVE", MB_ICONHAND || MB_ICONHAND);
+        n_key3 = false;
+        keys + 1;
+    }
+    if (nameCollidedObject == "key4") {
+        n_exit = true;
+        glm::vec3 keyPosition4 = models[3].getPosition();
+        keyPosition4.x = 0;
+        keyPosition4.y = 0;
+        keyPosition4.z = 0;
+        models[3].setPosition(keyPosition4);
+    }
+    if (n_exit == true) {
+        MessageBox(NULL, L"3 llaves", L"GANASTE", MB_ICONHAND || MB_ICONHAND);
+        n_exit = false;        
+    }
+    /*if (nameCollidedObject == "techo") {
+        MessageBox(NULL, L"techo jsjs", L"GANASTE", MB_ICONHAND || MB_ICONHAND);
+    }*/
 }
