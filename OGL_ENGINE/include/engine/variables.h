@@ -104,7 +104,8 @@ float enemyX = 0.0f, enemyY = 0.0f, enemyZ = 0.0f;
 bool n_key = false;
 bool n_key2 = false;
 bool n_key3 = false;
-bool n_exit = false;
+bool n_flower = false;
+bool n_dead = false;
 int keys = 0;
 
 //======DAY/NIGHT CYCLE AND WEATHER(RAIN)============//
@@ -122,6 +123,9 @@ bool isColliding = false;
 
 //==========KEY ANIMATION==========//
 bool moveKey = false;
+bool moveKey2 = false;
+bool moveKey3 = false;
+bool moveFlower = false;
 
 
 //:::: VECTORES :::://

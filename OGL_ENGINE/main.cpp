@@ -15,6 +15,7 @@
 #include <glad/glad.h>
 #include <iostream>
 #include <Windows.h>
+#include "Class.h"
 
 int main()
 {
@@ -92,8 +93,64 @@ int main()
         //:::: SKYBOX Y TERRENO:::://
         loadEnviroment(&terrain, &sky, view, projection);
 
+        glm::vec3 keyPosition = models[0].getPosition();
+        if (keyPosition.y <= 1.5f && !moveKey) {
+            keyPosition.y += 0.05f;
+        }
+        else {
+            moveKey = true;
+            if (keyPosition.y >= 1.5f && moveKey) {
+                keyPosition.y -= 0.05f;
+            }
+            else {
+                moveKey = false;
+            }
+        }models[0].setPosition(keyPosition);
+
+        glm::vec3 keyPosition2 = models[1].getPosition();
+        if (keyPosition2.y <= 1.5f && !moveKey2) {
+            keyPosition2.y += 0.05f;
+        }
+        else {
+            moveKey2 = true;
+            if (keyPosition2.y >= 1.5f && moveKey2) {
+                keyPosition2.y -= 0.05f;
+            }
+            else {
+                moveKey2 = false;
+            }
+        }models[1].setPosition(keyPosition2);
+
+        glm::vec3 keyPosition3 = models[2].getPosition();
+        if (keyPosition3.y <= 4.5f && !moveKey3) {
+            keyPosition3.y += 0.05f;
+        }
+        else {
+            moveKey3 = true;
+            if (keyPosition3.y >= 3.0f && moveKey3) {
+                keyPosition3.y -= 0.05f;
+            }
+            else {
+                moveKey3 = false;
+            }
+        }models[2].setPosition(keyPosition3);
+
+        glm::vec3 flowerPos = models[7].getPosition();
+        if (flowerPos.y <= 0.0f && !moveFlower) {
+            flowerPos.y += 0.05f;
+        }
+        else {
+            moveFlower = true;
+            if (flowerPos.y >= 0.5f && moveFlower) {
+                flowerPos.y -= 0.05f;
+            }
+            else {
+                moveFlower = false;
+            }
+        }models[7].setPosition(flowerPos);
+
         //==========TEXT==========//
-        Text->RenderText("Holiwas", -0.45f, 0.7f, 0.001f, glm::vec3(0.0, 0.0, 0.0));
+        //Text->RenderText("Holiwas", -0.45f, 0.7f, 0.001f, glm::vec3(0.0, 0.0, 0.0));
 
         ////=======PARTICLES=======//
         //rains = Particles("textures/particulas/rain.png");
@@ -200,24 +257,25 @@ void initScene(Shader ourShader)
     //models.push_back(Model("carroazul", "models/CarroAzul.obj", glm::vec3(-9.6, 0.7, -2), glm::vec3(0, 0, 0), 0.0f, initScale));
     //models.push_back(Model("van", "models/Van.obj", glm::vec3(12, 0.8, -4.5), glm::vec3(0, 90, 0), 0.0f, initScale));
     
-    models.push_back(Model("key", "models/key.obj", glm::vec3(7.25, 0.2, -1.66), glm::vec3(0, 0, 0), 0.0f, initScale));//0.1
-    models.push_back(Model("key2", "models/key.obj", glm::vec3(8.0, 0.2, -1.66), glm::vec3(0, 0, 0), 0.0f, initScale));
-    models.push_back(Model("key3", "models/key.obj", glm::vec3(8.75, 0.2, -1.66), glm::vec3(0, 0, 0), 0.0f, initScale));
-    models.push_back(Model("key4", "models/key.obj", glm::vec3(0, 0.2, -1.66), glm::vec3(0, 0, 0), 0.0f, initScale));
+    models.push_back(Model("key", "models/key.obj", glm::vec3(36.5398, 1.35, -2.08), glm::vec3(0, 108, 0), 0.0f, initScale));//0.1
+    models.push_back(Model("key2", "models/key.obj", glm::vec3(18.7002, 0.24, -8.26009), glm::vec3(0, 0, 0), 0.0f, initScale));
+    models.push_back(Model("key3", "models/key.obj", glm::vec3(17.5702, 4.22, -1.73), glm::vec3(0, 0, 0), 0.0f, initScale));
+    //models.push_back(Model("key4", "models/key.obj", glm::vec3(0, 0.2, -1.66), glm::vec3(0, 0, 0), 0.0f, initScale));
     models.push_back(Model("bed", "models/bed.obj", glm::vec3(16.79, 3.01, -11.4702), glm::vec3(0, 0, 0), 0.0f, 1.5f));
     models.push_back(Model("couch", "models/couch.obj", glm::vec3(36.47, 0.6, 1.26), glm::vec3(0, -180, 0), 0.0f, 1.5f));
     models.push_back(Model("Bush", "models/Bush.obj", glm::vec3(-0.659848, 0.5, 12.3203), glm::vec3(0, 0, 0), 0.0f, 2.2f));
     models.push_back(Model("closet", "models/closet.obj", glm::vec3(17.8603, 4.28, -7.75018), glm::vec3(0, 0, 0), 0.0f, 2.0f));
-    //models.push_back(Model("Flower", "models/Flower.obj", glm::vec3(10.3, 1.2, 9.0), glm::vec3(0, 0, 0), 0.0f, 1.0f));
-    //models.push_back(Model("Grass", "models/Grass.obj", glm::vec3(5.3, 0.5, 9.3), glm::vec3(0, 0, 0), 0.0f, 1.0f));//con initScale se pone su tamaño original
-    //models.push_back(Model("Rama", "models/rama.obj", glm::vec3(2.6, 0.5, -4.3), glm::vec3(0, 0, 0), 0.0f, 2));
-    //models.push_back(Model("stone", "models/stone.obj", glm::vec3(5.4, 0.5, 7.5), glm::vec3(0, 0, 0), 0.0f, initScale));
-    //models.push_back(Model("Stump", "models/Stump.obj", glm::vec3(2, 1.5, 5.3), glm::vec3(0, 0, 0), 0.0f, initScale));
-    //models.push_back(Model("tv", "models/tv.obj", glm::vec3(5.2, 0.5, 2.5), glm::vec3(0, 180, 0), 0.0f, 1));
+    models.push_back(Model("Flower", "models/Flower.obj", glm::vec3(26.8803, 0.00999082, 5.05994), glm::vec3(0, 0, 0), 0.0f, 1.0f));
+    models.push_back(Model("Flower2", "models/Flower.obj", glm::vec3(29.4104, -0.139999, 12.1401), glm::vec3(0, 0, 0), 0.0f, 1.0f));
+    models.push_back(Model("Grass", "models/Grass.obj", glm::vec3(9.97011, 0.5, 14.8301), glm::vec3(0, 0, 0), 0.0f, 1.0f));//con initScale se pone su tamaño original
+    models.push_back(Model("Rama", "models/rama.obj", glm::vec3(2.6, 0.5, -4.3), glm::vec3(0, 0, 0), 0.0f, 2));
+    models.push_back(Model("stone", "models/stone.obj", glm::vec3(10.0001, -0.12, 8.35002), glm::vec3(0, 0, 0), 0.0f, initScale));
+    models.push_back(Model("Stump", "models/Stump.obj", glm::vec3(2, 1.5, 5.3), glm::vec3(0, 0, 0), 0.0f, initScale));
+    models.push_back(Model("tv", "models/tv.obj", glm::vec3(35.4, 0.71, -6.60005), glm::vec3(0, 180, 0), 0.0f, 2.0f));
     //models.push_back(Model("fire", "models/fire.obj", glm::vec3(-11.1, 0.5, 8.4), glm::vec3(0, 0, 0), 0.0f, 1));
-    //models.push_back(Model("lights", "models/lights.obj", glm::vec3(-9.4, 0.5, 7.5), glm::vec3(0, 0, 0), 0.0f, 1));
+    models.push_back(Model("lights", "models/lights.obj", glm::vec3(34.1304, 1.12, -3.21007), glm::vec3(0, 0, 0), 0.0f, 1.5f));
     //models.push_back(Model("bath", "models/bath.obj", glm::vec3(-8.4, 0.5, -5.5), glm::vec3(0, 0, 0), 0.0f, 1));
-    //models.push_back(Model("box", "models/box.obj", glm::vec3(-15.4, 0.5, 7.5), glm::vec3(0, 0, 0), 0.0f, 1));
+    models.push_back(Model("box", "models/box.obj", glm::vec3(35.2304, 0.93, -9.30019), glm::vec3(0, 0, 0), 0.0f, 1));
 
     //pickModel.push_back(Model("key", "models/key.obj", glm::vec3(7.25, 0.2, -1.66), glm::vec3(0, 0, 0), 0.0f, 0.1));
     //=======CONSTRUCTION===========//
@@ -248,6 +306,8 @@ void initScene(Shader ourShader)
     collboxes.insert(pair<int, pair<string, CollisionBox>>(3, pair<string, CollisionBox>("pared_frente_arriba", collbox)));
     collbox = CollisionBox(glm::vec3(28.5604, 10, -0.8501), glm::vec3(9.3101, 0.49, 5), colorCollbox);
     collboxes.insert(pair<int, pair<string, CollisionBox>>(4, pair<string, CollisionBox>("techo", collbox)));
+    collbox = CollisionBox(glm::vec3(18.7502, 0.899866, -4.66011), glm::vec3(0.49, 0.5, 0.5), colorCollbox);
+    collboxes.insert(pair<int, pair<string, CollisionBox>>(5, pair<string, CollisionBox>("enemigo", collbox)));
 
     //OBJECT COLLISIONS
     //==========KEY COLLISTION==========//
@@ -286,7 +346,7 @@ void initScene(Shader ourShader)
     //==========BILLBOARD==========//
     //particles = Particles("textures/particulas.png");
     enemy = Billboard("textures/enemigo.png", (float)SCR_WIDTH, (float)SCR_HEIGHT, 453.5f, 768.0f);//907.0f, 1536.0f
-    enemy.setPosition(glm::vec3(-4.0f, 0.2f, 0.0f));
+    enemy.setPosition(glm::vec3(18.7502, 0.0, -4.66011));//-4.0f, 0.2f, 0.0f
     enemy.setScale(1.5f);
     
     ////=======PARTICLES=======//

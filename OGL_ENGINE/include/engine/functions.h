@@ -2,6 +2,7 @@
 #include <engine/utils.h>
 #include <engine/variables.h>
 #include <Windows.h>
+#include "Class.h"
 
 
 //:::: CALLBACKS  Y FUNCIONES :::://
@@ -144,7 +145,7 @@ void processInput(GLFWwindow *window)
                     Sleep(pause);
                     pause += 3000;
             }*/
-            //MessageBox(NULL, L"Menu pausa\nPulse enter o un boton para continuar.", L"PAUSE", MB_ICONHAND || MB_ICONHAND);
+            MessageBox(NULL, L"Menu pausa\nPulse enter o un boton para continuar.", L"PAUSE", MB_ICONHAND || MB_ICONHAND);
         }
         /////////////////////////////////////
 
@@ -649,17 +650,30 @@ void collidedObject_callback(string nameCollidedObject)
         n_key3 = false;
         keys + 1;
     }
-    if (nameCollidedObject == "key4") {
-        n_exit = true;
-        glm::vec3 keyPosition4 = models[3].getPosition();
+    if (nameCollidedObject == "enemigo") {
+        MessageBox(NULL, L"Moriste", L"FIN DEL JUEGO", MB_ICONHAND || MB_ICONHAND);
+        glfwTerminate();
+        exit(0);
+        /*n_dead = true;
+        glm::vec3 dead = models[2].getPosition();
+        dead.x = 0;
+        dead.y = 0;
+        dead.z = 0;
+        models[2].setPosition(dead);*/
+    }
+    if (nameCollidedObject == "Flower") {
+        n_flower = true;
+        glm::vec3 keyPosition4 = models[9].getPosition();
         keyPosition4.x = 0;
         keyPosition4.y = 0;
         keyPosition4.z = 0;
-        models[3].setPosition(keyPosition4);
+        models[9].setPosition(keyPosition4);
     }
-    if (n_exit == true) {
+    if (n_flower == true) {
         MessageBox(NULL, L"3 llaves", L"GANASTE", MB_ICONHAND || MB_ICONHAND);
-        n_exit = false;        
+        n_flower = false;
+        glfwTerminate();
+        exit(0);
     }
     /*if (nameCollidedObject == "techo") {
         MessageBox(NULL, L"techo jsjs", L"GANASTE", MB_ICONHAND || MB_ICONHAND);

@@ -132,7 +132,7 @@
       <Filter>Archivos de encabezado\engine</Filter>
     </ClInclude>
     <ClInclude Include="Class.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
