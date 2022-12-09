@@ -218,6 +218,7 @@ int main()
 
 void initScene(Shader ourShader)
 {
+    //INITIALIZE SRAND VARIABLE
     srand(time(0));
     //AGUA
     //:::: DEFINIMOS LAS TEXTURAS DE LA MULTITEXTURA DEL TERRENO :::://
