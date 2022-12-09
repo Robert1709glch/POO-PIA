@@ -16,6 +16,7 @@
 #include <iostream>
 #include <Windows.h>
 #include "Class.h"
+#include <ctime>
 
 int main()
 {
@@ -206,6 +207,7 @@ int main()
     //=======RAIN=======//
     rain.Release();
     //rains.Release();
+    //srand(time(0));
 
     //======WATER PLANE=========//
     plane.Release();
@@ -216,7 +218,7 @@ int main()
 
 void initScene(Shader ourShader)
 {
-
+    srand(time(0));
     //AGUA
     //:::: DEFINIMOS LAS TEXTURAS DE LA MULTITEXTURA DEL TERRENO :::://
     texturePaths = new const char *[4];
@@ -263,14 +265,21 @@ void initScene(Shader ourShader)
     //models.push_back(Model("key4", "models/key.obj", glm::vec3(0, 0.2, -1.66), glm::vec3(0, 0, 0), 0.0f, initScale));
     models.push_back(Model("bed", "models/bed.obj", glm::vec3(16.79, 3.01, -11.4702), glm::vec3(0, 0, 0), 0.0f, 1.5f));
     models.push_back(Model("couch", "models/couch.obj", glm::vec3(36.47, 0.6, 1.26), glm::vec3(0, -180, 0), 0.0f, 1.5f));
-    models.push_back(Model("Bush", "models/Bush.obj", glm::vec3(-0.659848, 0.5, 12.3203), glm::vec3(0, 0, 0), 0.0f, 2.2f));
-    models.push_back(Model("closet", "models/closet.obj", glm::vec3(17.8603, 4.28, -7.75018), glm::vec3(0, 0, 0), 0.0f, 2.0f));
+    models.push_back(Model("Bush", "models/Bush.obj", glm::vec3(-0.659848, -0.1, 12.3203), glm::vec3(0, 0, 0), 0.0f, 2.2f));
+    models.push_back(Model("Bush2", "models/Bush.obj", glm::vec3(rand() % 10 - 5, -0.1, rand() % 20 + 1), glm::vec3(0, 0, 0), 0.0f, 2.2f));
+    models.push_back(Model("Bush3", "models/Bush.obj", glm::vec3(rand() % 10 - 5, -0.1, rand() % 20 - 5), glm::vec3(0, 0, 0), 0.0f, 2.2f));
+    models.push_back(Model("Bush4", "models/Bush.obj", glm::vec3(rand() % 10 - 5, -0.1, rand() % 20 - 10), glm::vec3(0, 0, 0), 0.0f, 2.2f));
+    models.push_back(Model("closet", "models/closet.obj", glm::vec3(16.4603, 3.29999, -7.75018), glm::vec3(0, 0, 0), 0.0f, 2.0f));
     models.push_back(Model("Flower", "models/Flower.obj", glm::vec3(26.8803, 0.00999082, 5.05994), glm::vec3(0, 0, 0), 0.0f, 1.0f));
     models.push_back(Model("Flower2", "models/Flower.obj", glm::vec3(29.4104, -0.139999, 12.1401), glm::vec3(0, 0, 0), 0.0f, 1.0f));
-    models.push_back(Model("Grass", "models/Grass.obj", glm::vec3(9.97011, 0.5, 14.8301), glm::vec3(0, 0, 0), 0.0f, 1.0f));//con initScale se pone su tamaño original
-    models.push_back(Model("Rama", "models/rama.obj", glm::vec3(2.6, 0.5, -4.3), glm::vec3(0, 0, 0), 0.0f, 2));
+    models.push_back(Model("Grass", "models/Grass.obj", glm::vec3(9.97011, -0.1, 14.8301), glm::vec3(0, 0, 0), 0.0f, 1.0f));//con initScale se pone su tamaño original
+    models.push_back(Model("Rama", "models/rama.obj", glm::vec3(2.6, 0.0, -4.3), glm::vec3(0, 0, 0), 0.0f, 2));
     models.push_back(Model("stone", "models/stone.obj", glm::vec3(10.0001, -0.12, 8.35002), glm::vec3(0, 0, 0), 0.0f, initScale));
-    models.push_back(Model("Stump", "models/Stump.obj", glm::vec3(2, 1.5, 5.3), glm::vec3(0, 0, 0), 0.0f, initScale));
+    models.push_back(Model("stone2", "models/stone.obj", glm::vec3(rand() % 10 + 5, -0.12, rand() % 8 - 10), glm::vec3(0, 0, 0), 0.0f, initScale));
+    models.push_back(Model("stone3", "models/stone.obj", glm::vec3(rand() % 5 + 1, -0.12, rand() % 5 - 7), glm::vec3(0, 0, 0), 0.0f, initScale));
+    models.push_back(Model("stone2", "models/stone.obj", glm::vec3(rand() % 10 + 1, -0.12, rand() % 9 - 5), glm::vec3(0, 0, 0), 0.0f, initScale));
+    models.push_back(Model("stone3", "models/stone.obj", glm::vec3(rand() % 8 + 1, -0.12, rand() % 10 - 10), glm::vec3(0, 0, 0), 0.0f, initScale));
+    models.push_back(Model("Stump", "models/Stump.obj", glm::vec3(2, 0.5, 5.3), glm::vec3(0, 0, 0), 0.0f, initScale));
     models.push_back(Model("tv", "models/tv.obj", glm::vec3(35.4, 0.71, -6.60005), glm::vec3(0, 180, 0), 0.0f, 2.0f));
     //models.push_back(Model("fire", "models/fire.obj", glm::vec3(-11.1, 0.5, 8.4), glm::vec3(0, 0, 0), 0.0f, 1));
     models.push_back(Model("lights", "models/lights.obj", glm::vec3(34.1304, 1.12, -3.21007), glm::vec3(0, 0, 0), 0.0f, 1.5f));
