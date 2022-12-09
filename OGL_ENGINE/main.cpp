@@ -274,13 +274,16 @@ void initScene(Shader ourShader)
     models.push_back(Model("Flower", "models/Flower.obj", glm::vec3(26.8803, 0.00999082, 5.05994), glm::vec3(0, 0, 0), 0.0f, 1.0f));
     models.push_back(Model("Flower2", "models/Flower.obj", glm::vec3(29.4104, -0.139999, 12.1401), glm::vec3(0, 0, 0), 0.0f, 1.0f));
     models.push_back(Model("Grass", "models/Grass.obj", glm::vec3(9.97011, -0.1, 14.8301), glm::vec3(0, 0, 0), 0.0f, 1.0f));//con initScale se pone su tamaño original
-    models.push_back(Model("Rama", "models/rama.obj", glm::vec3(2.6, 0.0, -4.3), glm::vec3(0, 0, 0), 0.0f, 2));
+    models.push_back(Model("Grass2", "models/Grass.obj", glm::vec3(rand() % 31 + 16, -0.1, rand() % 14 + 11), glm::vec3(0, 0, 0), 0.0f, 1.0f));
+    models.push_back(Model("Grass3", "models/Grass.obj", glm::vec3(rand() % 25 + 15, -0.1, rand() % 14 + 11), glm::vec3(0, 0, 0), 0.0f, 1.0f));
+    models.push_back(Model("Grass3", "models/Grass.obj", glm::vec3(rand() % 15 + 1, -0.1, rand() % 14 + 11), glm::vec3(0, 0, 0), 0.0f, 1.0f));
+    models.push_back(Model("Rama", "models/rama.obj", glm::vec3(2.6, -0.1, -4.3), glm::vec3(0, 0, 0), 0.0f, 2));
     models.push_back(Model("stone", "models/stone.obj", glm::vec3(10.0001, -0.12, 8.35002), glm::vec3(0, 0, 0), 0.0f, initScale));
     models.push_back(Model("stone2", "models/stone.obj", glm::vec3(rand() % 10 + 5, -0.12, rand() % 8 - 10), glm::vec3(0, 0, 0), 0.0f, initScale));
     models.push_back(Model("stone3", "models/stone.obj", glm::vec3(rand() % 5 + 1, -0.12, rand() % 5 - 7), glm::vec3(0, 0, 0), 0.0f, initScale));
     models.push_back(Model("stone2", "models/stone.obj", glm::vec3(rand() % 10 + 1, -0.12, rand() % 9 - 5), glm::vec3(0, 0, 0), 0.0f, initScale));
     models.push_back(Model("stone3", "models/stone.obj", glm::vec3(rand() % 8 + 1, -0.12, rand() % 10 - 10), glm::vec3(0, 0, 0), 0.0f, initScale));
-    models.push_back(Model("Stump", "models/Stump.obj", glm::vec3(2, 0.5, 5.3), glm::vec3(0, 0, 0), 0.0f, initScale));
+    models.push_back(Model("Stump", "models/Stump.obj", glm::vec3(3.25, -0.0299998, -4.03002), glm::vec3(0, 0, 0), 0.0f, 0.5));
     models.push_back(Model("tv", "models/tv.obj", glm::vec3(35.4, 0.71, -6.60005), glm::vec3(0, 180, 0), 0.0f, 2.0f));
     //models.push_back(Model("fire", "models/fire.obj", glm::vec3(-11.1, 0.5, 8.4), glm::vec3(0, 0, 0), 0.0f, 1));
     models.push_back(Model("lights", "models/lights.obj", glm::vec3(34.1304, 1.12, -3.21007), glm::vec3(0, 0, 0), 0.0f, 1.5f));
