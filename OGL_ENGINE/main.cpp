@@ -420,8 +420,8 @@ void loadEnviroment(Terrain *terrain, SkyBox *sky, glm::mat4 view, glm::mat4 pro
         mainLight = vec3(0.1);
     }
 
-    glm::vec3(enemyPos) = enemy.getPosition();
-    glm::vec3(cameraPos) = camera.Position;
+    glm::vec3(enemyPos) = enemy.getPosition();      //cambiar para utilizar un getPosition de la camara y un setPosition para
+    glm::vec3(cameraPos) = camera.Position;         //el enemigo(billboard y colision del billboard)
     if (enemyPos.x < cameraPos.x && enemyPos.x > cameraPos.x) {
         //enemy.setPosition(glm::vec3(+1, +0, +0));
         enemyX += 1.0f;

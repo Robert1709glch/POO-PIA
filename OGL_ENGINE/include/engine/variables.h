@@ -107,6 +107,7 @@ bool n_key3 = false;
 bool n_flower = false;
 bool n_dead = false;
 int keys = 0;
+bool isPick = false;
 
 //======DAY/NIGHT CYCLE AND WEATHER(RAIN)============//
 bool isDay = false; //TOGGLE

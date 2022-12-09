@@ -86,6 +86,7 @@ void processInput(GLFWwindow *window)
             }
             if (state.buttons[GLFW_GAMEPAD_BUTTON_X] == 1) {
                 //Instruction to pick an object(keys)
+                isPick = true;
             }
             if (state.buttons[GLFW_GAMEPAD_BUTTON_START] == 1) {
                 MessageBox(NULL, L"Menu pausa\nPulse enter o un boton para continuar.", L"PAUSE", MB_ICONHAND || MB_ICONHAND);
@@ -146,6 +147,9 @@ void processInput(GLFWwindow *window)
                     pause += 3000;
             }*/
             MessageBox(NULL, L"Menu pausa\nPulse enter o un boton para continuar.", L"PAUSE", MB_ICONHAND || MB_ICONHAND);
+        }
+        if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS) {
+            isPick = true;
         }
         /////////////////////////////////////
 
@@ -611,7 +615,7 @@ void scroll_callback(GLFWwindow *window, double xoffset, double yoffset)
 void collidedObject_callback(string nameCollidedObject)
 {
     //SI OCURRE UNA COLISIÓN HACEMOS ALGO
-    if (nameCollidedObject == "key") {
+    if (nameCollidedObject == "key" && isPick == true) {
         n_key = true;
         glm::vec3 keyPosition = models[0].getPosition();
         keyPosition.x = 0;
@@ -619,12 +623,13 @@ void collidedObject_callback(string nameCollidedObject)
         keyPosition.z = 0;
         models[0].setPosition(keyPosition);
     }
-    if (n_key == true) {
+    if (n_key == true && isPick == true) {
         MessageBox(NULL, L"1/3", L"LLAVE", MB_ICONHAND || MB_ICONHAND);
         n_key = false;
+        isPick = false;
         keys + 1;
     }
-    if (nameCollidedObject == "key2") {
+    if (nameCollidedObject == "key2" && isPick == true) {
         n_key2 = true;
         glm::vec3 keyPosition2 = models[1].getPosition();
         keyPosition2.x = 0;
@@ -632,12 +637,13 @@ void collidedObject_callback(string nameCollidedObject)
         keyPosition2.z = 0;
         models[1].setPosition(keyPosition2);
     }
-    if (n_key2 == true) {
+    if (n_key2 == true && isPick == true) {
         MessageBox(NULL, L"2/3", L"LLAVE", MB_ICONHAND || MB_ICONHAND);
         n_key2 = false;
+        isPick = false;
         keys + 1;
     }
-    if (nameCollidedObject == "key3") {
+    if (nameCollidedObject == "key3" && isPick == true) {
         n_key3 = true;
         glm::vec3 keyPosition3 = models[2].getPosition();
         keyPosition3.x = 0;
@@ -645,9 +651,10 @@ void collidedObject_callback(string nameCollidedObject)
         keyPosition3.z = 0;
         models[2].setPosition(keyPosition3);
     }    
-    if (n_key3 == true) {
+    if (n_key3 == true && isPick == true) {
         MessageBox(NULL, L"3/3\nESCAPA!", L"LLAVE", MB_ICONHAND || MB_ICONHAND);
         n_key3 = false;
+        isPick = false;
         keys + 1;
     }
     if (nameCollidedObject == "enemigo") {
