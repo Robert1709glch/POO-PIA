@@ -151,6 +151,16 @@ void processInput(GLFWwindow *window)
         if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS) {
             isPick = true;
         }
+        if (glfwGetKey(window, GLFW_KEY_O) == GLFW_PRESS) {
+            if (isMoving == true) {
+                isMoving = false;
+                MessageBox(NULL, L"Enemigo sin mover", L"STOP", MB_ICONHAND | MB_ICONHAND);
+            }
+            else if (isMoving == false) {
+                isMoving = true;
+                MessageBox(NULL, L"Enemigo en movimiento", L"MOVE", MB_ICONHAND | MB_ICONHAND);
+            }
+        }
         /////////////////////////////////////
 
         isJoyStick = false;

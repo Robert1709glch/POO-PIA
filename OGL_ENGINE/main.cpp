@@ -260,35 +260,36 @@ void initScene(Shader ourShader)
     //models.push_back(Model("carroazul", "models/CarroAzul.obj", glm::vec3(-9.6, 0.7, -2), glm::vec3(0, 0, 0), 0.0f, initScale));
     //models.push_back(Model("van", "models/Van.obj", glm::vec3(12, 0.8, -4.5), glm::vec3(0, 90, 0), 0.0f, initScale));
     
-    models.push_back(Model("key", "models/key.obj", glm::vec3(36.5398, 1.35, -2.08), glm::vec3(0, 108, 0), 0.0f, initScale));//0.1
-    models.push_back(Model("key2", "models/key.obj", glm::vec3(18.7002, 0.24, -8.26009), glm::vec3(0, 0, 0), 0.0f, initScale));
-    models.push_back(Model("key3", "models/key.obj", glm::vec3(17.5702, 4.22, -1.73), glm::vec3(0, 0, 0), 0.0f, initScale));
+    models.push_back(Model("key", "models/key.obj", glm::vec3(36.5398, 1.35, -2.08), glm::vec3(0, 108, 0), 0.0f, initScale));   //0
+    models.push_back(Model("key2", "models/key.obj", glm::vec3(18.7002, 0.24, -8.26009), glm::vec3(0, 0, 0), 0.0f, initScale)); //1
+    models.push_back(Model("key3", "models/key.obj", glm::vec3(17.5702, 4.22, -1.73), glm::vec3(0, 0, 0), 0.0f, initScale));    //2
     //models.push_back(Model("key4", "models/key.obj", glm::vec3(0, 0.2, -1.66), glm::vec3(0, 0, 0), 0.0f, initScale));
-    models.push_back(Model("bed", "models/bed.obj", glm::vec3(16.79, 3.01, -11.4702), glm::vec3(0, 0, 0), 0.0f, 1.5f));
-    models.push_back(Model("couch", "models/couch.obj", glm::vec3(36.47, 0.6, 1.26), glm::vec3(0, -180, 0), 0.0f, 1.5f));
-    models.push_back(Model("Bush", "models/Bush.obj", glm::vec3(-0.659848, -0.1, 12.3203), glm::vec3(0, 0, 0), 0.0f, 2.2f));
-    models.push_back(Model("Bush2", "models/Bush.obj", glm::vec3(rand() % 10 - 5, -0.1, rand() % 20 + 1), glm::vec3(0, 0, 0), 0.0f, 2.2f));
-    models.push_back(Model("Bush3", "models/Bush.obj", glm::vec3(rand() % 10 - 5, -0.1, rand() % 20 - 5), glm::vec3(0, 0, 0), 0.0f, 2.2f));
-    models.push_back(Model("Bush4", "models/Bush.obj", glm::vec3(rand() % 10 - 5, -0.1, rand() % 20 - 10), glm::vec3(0, 0, 0), 0.0f, 2.2f));
-    models.push_back(Model("closet", "models/closet.obj", glm::vec3(16.4603, 3.29999, -7.75018), glm::vec3(0, 0, 0), 0.0f, 2.0f));
-    models.push_back(Model("Flower", "models/Flower.obj", glm::vec3(26.8803, 0.00999082, 5.05994), glm::vec3(0, 0, 0), 0.0f, 1.0f));
-    models.push_back(Model("Flower2", "models/Flower.obj", glm::vec3(29.4104, -0.139999, 12.1401), glm::vec3(0, 0, 0), 0.0f, 1.0f));
+    models.push_back(Model("bed", "models/bed.obj", glm::vec3(16.79, 3.01, -11.4702), glm::vec3(0, 0, 0), 0.0f, 1.5f));         //3
+    models.push_back(Model("couch", "models/couch.obj", glm::vec3(36.47, 0.6, 1.26), glm::vec3(0, -180, 0), 0.0f, 1.5f));       //4
+    models.push_back(Model("Bush", "models/Bush.obj", glm::vec3(-0.659848, -0.1, 12.3203), glm::vec3(0, 0, 0), 0.0f, 2.2f));    //5
+    models.push_back(Model("Bush2", "models/Bush.obj", glm::vec3(rand() % 10 - 5, -0.1, rand() % 20 + 1), glm::vec3(0, 0, 0), 0.0f, 2.2f));//6
+    models.push_back(Model("Bush3", "models/Bush.obj", glm::vec3(rand() % 10 - 5, -0.1, rand() % 20 - 5), glm::vec3(0, 0, 0), 0.0f, 2.2f));//7
+    models.push_back(Model("Bush4", "models/Bush.obj", glm::vec3(rand() % 10 - 5, -0.1, rand() % 20 - 10), glm::vec3(0, 0, 0), 0.0f, 2.2f));//8
+    models.push_back(Model("closet", "models/closet.obj", glm::vec3(16.4603, 3.29999, -7.75018), glm::vec3(0, 0, 0), 0.0f, 2.0f));//9
+    models.push_back(Model("Flower", "models/Flower.obj", glm::vec3(26.8803, 0.00999082, 5.05994), glm::vec3(0, 0, 0), 0.0f, 1.0f));//10
+    models.push_back(Model("Flower2", "models/Flower.obj", glm::vec3(29.4104, -0.139999, 12.1401), glm::vec3(0, 0, 0), 0.0f, 1.0f));//11
     models.push_back(Model("Grass", "models/Grass.obj", glm::vec3(9.97011, -0.1, 14.8301), glm::vec3(0, 0, 0), 0.0f, 1.0f));//con initScale se pone su tamaño original
-    models.push_back(Model("Grass2", "models/Grass.obj", glm::vec3(rand() % 31 + 16, -0.1, rand() % 14 + 11), glm::vec3(0, 0, 0), 0.0f, 1.0f));
-    models.push_back(Model("Grass3", "models/Grass.obj", glm::vec3(rand() % 25 + 15, -0.1, rand() % 14 + 11), glm::vec3(0, 0, 0), 0.0f, 1.0f));
-    models.push_back(Model("Grass3", "models/Grass.obj", glm::vec3(rand() % 15 + 1, -0.1, rand() % 14 + 11), glm::vec3(0, 0, 0), 0.0f, 1.0f));
-    models.push_back(Model("Rama", "models/rama.obj", glm::vec3(2.6, -0.1, -4.3), glm::vec3(0, 0, 0), 0.0f, 2));
-    models.push_back(Model("stone", "models/stone.obj", glm::vec3(10.0001, -0.12, 8.35002), glm::vec3(0, 0, 0), 0.0f, initScale));
-    models.push_back(Model("stone2", "models/stone.obj", glm::vec3(rand() % 10 + 5, -0.12, rand() % 8 - 10), glm::vec3(0, 0, 0), 0.0f, initScale));
-    models.push_back(Model("stone3", "models/stone.obj", glm::vec3(rand() % 5 + 1, -0.12, rand() % 5 - 7), glm::vec3(0, 0, 0), 0.0f, initScale));
-    models.push_back(Model("stone2", "models/stone.obj", glm::vec3(rand() % 10 + 1, -0.12, rand() % 9 - 5), glm::vec3(0, 0, 0), 0.0f, initScale));
-    models.push_back(Model("stone3", "models/stone.obj", glm::vec3(rand() % 8 + 1, -0.12, rand() % 10 - 10), glm::vec3(0, 0, 0), 0.0f, initScale));
-    models.push_back(Model("Stump", "models/Stump.obj", glm::vec3(3.25, -0.0299998, -4.03002), glm::vec3(0, 0, 0), 0.0f, 0.5));
-    models.push_back(Model("tv", "models/tv.obj", glm::vec3(35.4, 0.71, -6.60005), glm::vec3(0, 180, 0), 0.0f, 2.0f));
+    models.push_back(Model("Grass2", "models/Grass.obj", glm::vec3(rand() % 31 + 16, -0.1, rand() % 14 + 11), glm::vec3(0, 0, 0), 0.0f, 1.0f));//12
+    models.push_back(Model("Grass3", "models/Grass.obj", glm::vec3(rand() % 25 + 15, -0.1, rand() % 14 + 11), glm::vec3(0, 0, 0), 0.0f, 1.0f));//13
+    models.push_back(Model("Grass3", "models/Grass.obj", glm::vec3(rand() % 15 + 1, -0.1, rand() % 14 + 11), glm::vec3(0, 0, 0), 0.0f, 1.0f));//14
+    models.push_back(Model("Rama", "models/rama.obj", glm::vec3(2.6, -0.1, -4.3), glm::vec3(0, 0, 0), 0.0f, 2));//15
+    models.push_back(Model("stone", "models/stone.obj", glm::vec3(10.0001, -0.12, 8.35002), glm::vec3(0, 0, 0), 0.0f, initScale));//16
+    models.push_back(Model("stone2", "models/stone.obj", glm::vec3(rand() % 10 + 5, -0.12, rand() % 8 - 10), glm::vec3(0, 0, 0), 0.0f, initScale));//17
+    models.push_back(Model("stone3", "models/stone.obj", glm::vec3(rand() % 5 + 1, -0.12, rand() % 5 - 7), glm::vec3(0, 0, 0), 0.0f, initScale));//18
+    models.push_back(Model("stone2", "models/stone.obj", glm::vec3(rand() % 10 + 1, -0.12, rand() % 9 - 5), glm::vec3(0, 0, 0), 0.0f, initScale));//19
+    models.push_back(Model("stone3", "models/stone.obj", glm::vec3(rand() % 8 + 1, -0.12, rand() % 10 - 10), glm::vec3(0, 0, 0), 0.0f, initScale));//20
+    models.push_back(Model("Stump", "models/Stump.obj", glm::vec3(3.25, -0.0299998, -4.03002), glm::vec3(0, 0, 0), 0.0f, 0.5));//20
+    models.push_back(Model("tv", "models/tv.obj", glm::vec3(35.4, 0.71, -6.60005), glm::vec3(0, 180, 0), 0.0f, 2.0f));//21
     //models.push_back(Model("fire", "models/fire.obj", glm::vec3(-11.1, 0.5, 8.4), glm::vec3(0, 0, 0), 0.0f, 1));
-    models.push_back(Model("lights", "models/lights.obj", glm::vec3(34.1304, 1.12, -3.21007), glm::vec3(0, 0, 0), 0.0f, 1.5f));
+    models.push_back(Model("lights", "models/lights.obj", glm::vec3(34.1304, 1.12, -3.21007), glm::vec3(0, 0, 0), 0.0f, 1.5f));//22
     //models.push_back(Model("bath", "models/bath.obj", glm::vec3(-8.4, 0.5, -5.5), glm::vec3(0, 0, 0), 0.0f, 1));
-    models.push_back(Model("box", "models/box.obj", glm::vec3(35.2304, 0.93, -9.30019), glm::vec3(0, 0, 0), 0.0f, 1));
+    models.push_back(Model("box", "models/box.obj", glm::vec3(35.2304, 0.93, -9.30019), glm::vec3(0, 0, 0), 0.0f, 1));//23
+
 
     //pickModel.push_back(Model("key", "models/key.obj", glm::vec3(7.25, 0.2, -1.66), glm::vec3(0, 0, 0), 0.0f, 0.1));
     //=======CONSTRUCTION===========//
@@ -321,6 +322,8 @@ void initScene(Shader ourShader)
     collboxes.insert(pair<int, pair<string, CollisionBox>>(4, pair<string, CollisionBox>("techo", collbox)));
     collbox = CollisionBox(glm::vec3(18.7502, 0.899866, -4.66011), glm::vec3(0.49, 0.5, 0.5), colorCollbox);
     collboxes.insert(pair<int, pair<string, CollisionBox>>(5, pair<string, CollisionBox>("enemigo", collbox)));
+    collbox = CollisionBox(glm::vec3(18.7502, 0.899866, -4.66011), glm::vec3(0.49, 0.5, 0.5), colorCollbox);
+    collboxes.insert(pair<int, pair<string, CollisionBox>>(6, pair<string, CollisionBox>("puerta", collbox)));
 
     //OBJECT COLLISIONS
     //==========KEY COLLISTION==========//
@@ -362,6 +365,8 @@ void initScene(Shader ourShader)
     enemy.setPosition(glm::vec3(18.7502, 0.0, -4.66011));//-4.0f, 0.2f, 0.0f
     enemy.setScale(1.5f);
     
+    
+    
     ////=======PARTICLES=======//
     //rains = Particles("textures/particulas/rain.png");
     ////MOVEMENT VALUES//
@@ -374,7 +379,7 @@ void initScene(Shader ourShader)
     //m_rain.Velocity = { 0.2f, 1.0f, 1.0f };
     //m_rain.VelocityVariation = { 0.2f, 1.0f, 0.5f };
     //m_rain.Position = { 0.0f, 0.0f, 0.0f };
-
+    
 
     //==========GAME START==========//
     MessageBox(NULL, L"Encuentra las 3 llaves para poder escapar\nEnter o cualquier boton para continuar", L"START", MB_ICONHAND || MB_ICONHAND);
@@ -433,37 +438,39 @@ void loadEnviroment(Terrain *terrain, SkyBox *sky, glm::mat4 view, glm::mat4 pro
         mainLight = vec3(0.1);
     }
 
-    glm::vec3(enemyPos) = enemy.getPosition();      //cambiar para utilizar un getPosition de la camara y un setPosition para
-    glm::vec3(cameraPos) = camera.Position;         //el enemigo(billboard y colision del billboard)
-    if (enemyPos.x < cameraPos.x && enemyPos.x > cameraPos.x) {
-        //enemy.setPosition(glm::vec3(+1, +0, +0));
-        enemyX += 1.0f;
-        enemyPos.x = enemyX;
-    }
-    if (enemyPos.x > cameraPos.x) {
-        enemyX -= 1.0f;
-        enemyPos.x = enemyX;
-    }
-    if (enemyPos.y < cameraPos.y) {
-        enemyY += 1.0f;
-        enemyPos.y = enemyY;
-    }
-    if (enemyPos.y > cameraPos.y) {
-        enemyY -= 1.0f;
-        enemyPos.y = enemyY;
-    }
-    if (enemyPos.z < cameraPos.z) {
-        enemyY += 1.0f;
-        enemyPos.z = enemyZ;
-    }
-    if (enemyPos.z > cameraPos.z) {
-        enemyY -= 1.0f;
-        enemyPos.z = enemyZ;
-    }
-    if (enemyPos.x == cameraPos.x && enemyPos.y == cameraPos.y && enemyPos.z == cameraPos.z) {
-        //activar el toque y la pantalla de perdido
-        //MessageBox(NULL, L"Te atraparon, perdiste", L"PERDISTE", MB_ICONHAND || MB_ICONHAND);
-    }
+   
+    //glm::vec3(enemyPos) = enemy.getPosition();      //cambiar para utilizar un getPosition de la camara y un setPosition para
+    //glm::vec3(cameraPos) = camera.Position;         //el enemigo(billboard y colision del billboard)
+    //if (enemyPos.x < cameraPos.x && enemyPos.x > cameraPos.x) {
+    //    //enemy.setPosition(glm::vec3(+1, +0, +0));
+    //    enemyX += 1.0f;
+    //    enemyPos.x = enemyX;
+    //}
+    //if (enemyPos.x > cameraPos.x) {
+    //    enemyX -= 1.0f;
+    //    enemyPos.x = enemyX;
+    //}
+    //if (enemyPos.y < cameraPos.y) {
+    //    enemyY += 1.0f;
+    //    enemyPos.y = enemyY;
+    //}
+    //if (enemyPos.y > cameraPos.y) {
+    //    enemyY -= 1.0f;
+    //    enemyPos.y = enemyY;
+    //}
+    //if (enemyPos.z < cameraPos.z) {
+    //    enemyY += 1.0f;
+    //    enemyPos.z = enemyZ;
+    //}
+    //if (enemyPos.z > cameraPos.z) {
+    //    enemyY -= 1.0f;
+    //    enemyPos.z = enemyZ;
+    //}
+    //if (enemyPos.x == cameraPos.x && enemyPos.y == cameraPos.y && enemyPos.z == cameraPos.z) {
+    //    //activar el toque y la pantalla de perdido
+    //    //MessageBox(NULL, L"Te atraparon, perdiste", L"PERDISTE", MB_ICONHAND || MB_ICONHAND);
+    //}
+    
 
 }
 void loadAnim(glm::mat4 view, glm::mat4 projection) {
@@ -503,6 +510,17 @@ void loadAnim(glm::mat4 view, glm::mat4 projection) {
         rain.changeSprite(round(spriteX), spriteY);
         rain.Draw(glm::vec2(0.0f, 0.0f), 3.0);
     }
+
+    //==========SEGUIMIENTO DEL BILLBOARD==========//
+   /* glm::vec3(cameraPos) = camera.Position;
+    glm::vec3(enemyPos) = enemy.getPosition();
+    enemigo prueba;
+    glm::vec3(enemyNewPos) = cameraPos - enemyPos;
+    if (isMoving == true) {
+        glm::vec3(movimientoBill) = prueba.acercar(cameraPos, enemyPos);
+        enemy.setPosition(movimientoBill);
+        Sleep(80);
+    }*/
     //Always active
     /*if (spriteX <= 2.0f) {
         if (spriteX <= 4.0f) {

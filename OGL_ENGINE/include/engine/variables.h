@@ -100,6 +100,7 @@ TextRenderer* Text;
 //=======BILLBOARD=======//
 Billboard enemy;
 float enemyX = 0.0f, enemyY = 0.0f, enemyZ = 0.0f;
+bool isMoving = true;
 
 //=====JUGABILIDAD=====//
 bool n_key = false;
