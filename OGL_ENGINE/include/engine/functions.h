@@ -139,19 +139,13 @@ void processInput(GLFWwindow *window)
             camera.ProcessKeyboard(RIGHT, deltaTime);
         }
         /////////////////////////////////////
-        if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS) {
-            /*Sleep(5000);
-            while (GLFW_PRESS == 1) {
-                    int pause = 3000;
-                    Sleep(pause);
-                    pause += 3000;
-            }*/
+        if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS) {//PAUSE
             MessageBox(NULL, L"Menu pausa\nPulse enter o un boton para continuar.", L"PAUSE", MB_ICONHAND || MB_ICONHAND);
         }
-        if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS) {
+        if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS) {//AGARRAR OBJETOS
             isPick = true;
         }
-        if (glfwGetKey(window, GLFW_KEY_O) == GLFW_PRESS) {
+        if (glfwGetKey(window, GLFW_KEY_O) == GLFW_PRESS) {//ACTIVAR MOVIMIENTO DEL ENEMIGO
             if (isMoving == true) {
                 isMoving = false;
                 MessageBox(NULL, L"Enemigo sin mover", L"STOP", MB_ICONHAND | MB_ICONHAND);

@@ -130,6 +130,12 @@ bool moveKey2 = false;
 bool moveKey3 = false;
 bool moveFlower = false;
 
+//==========BIRD ANIMATION==========//
+bool moveBird = false;
+
+//==========DUCK ANIMATION==========//
+bool moveDuck = false;
+
 
 //:::: VECTORES :::://
 glm::vec3 force(0);

@@ -16,6 +16,7 @@
 #include <iostream>
 #include <Windows.h>
 #include "Class.h"
+#include <engine/camera.h>
 #include <ctime>
 
 int main()
@@ -94,14 +95,15 @@ int main()
         //:::: SKYBOX Y TERRENO:::://
         loadEnviroment(&terrain, &sky, view, projection);
 
+        //:::: KEY ANIMATION :::://
         glm::vec3 keyPosition = models[0].getPosition();
-        if (keyPosition.y <= 1.5f && !moveKey) {
-            keyPosition.y += 0.05f;
+        if (keyPosition.y <= 2.0f && !moveKey) {
+            keyPosition.y += 0.10f * deltaTime;
         }
         else {
             moveKey = true;
-            if (keyPosition.y >= 1.5f && moveKey) {
-                keyPosition.y -= 0.05f;
+            if (keyPosition.y >= 1.7f && moveKey) {
+                keyPosition.y -= 0.07f;
             }
             else {
                 moveKey = false;
@@ -123,20 +125,21 @@ int main()
         }models[1].setPosition(keyPosition2);
 
         glm::vec3 keyPosition3 = models[2].getPosition();
-        if (keyPosition3.y <= 4.5f && !moveKey3) {
-            keyPosition3.y += 0.05f;
+        if (keyPosition3.y <= 5.0f && !moveKey3) {
+            keyPosition3.y += 0.10f * deltaTime;
         }
         else {
             moveKey3 = true;
-            if (keyPosition3.y >= 3.0f && moveKey3) {
-                keyPosition3.y -= 0.05f;
+            if (keyPosition3.y >= 4.0f && moveKey3) {
+                keyPosition3.y -= 0.15f;
             }
             else {
                 moveKey3 = false;
             }
         }models[2].setPosition(keyPosition3);
 
-        glm::vec3 flowerPos = models[7].getPosition();
+        //:::: FLOWER ANIMATION :::://
+        glm::vec3 flowerPos = models[11].getPosition();
         if (flowerPos.y <= 0.0f && !moveFlower) {
             flowerPos.y += 0.05f;
         }
@@ -148,7 +151,51 @@ int main()
             else {
                 moveFlower = false;
             }
-        }models[7].setPosition(flowerPos);
+        }models[11].setPosition(flowerPos);
+
+        //:::: BIRD ANIMATION :::://
+        glm::vec3 birdPos = models[26].getPosition();
+        glm::vec3 birdRot = models[26].getRotationAxis();
+        float birdRotate = models[26].getRotation();
+        //glm::mat4 birdRot = glm::mat4(models[26].getRotation());
+        if (birdPos.z <= 4.5 && !moveBird) {
+            birdPos.z -= 0.5 * deltaTime;
+            birdPos.x += 0.5 * deltaTime;
+            birdRotate += 90.0f;
+            //birdRot.x += 90;
+            //birdRot += 90.1;
+            //birdRot = glm::rotate(birdRot, glm::radians(45.0f), glm::vec3(0.5f, -0.5f, 0.0f));
+        }
+        else {
+            moveBird = true;
+            if (birdPos.z >= 0.5 && moveBird) {
+                //birdPos.r += 90;
+                birdPos.z -= 0.5;
+            }
+            else {
+                moveBird = false;
+            }
+        }models[26].setPosition(birdPos);
+        models[26].setRotation(birdRot, birdRotate);
+        //models[26].setRotationAxis(birdRot);
+        //models[26].setRotation(glm::vec3(0, birdRot, 0), birdRot);
+        //models[26].setRotationAxis(glm::vec3(birdRot, 0, 0));
+        
+
+        //:::: DUCK ANIMATION :::://
+        glm::vec3 duckPos = models[27].getPosition();
+        if (duckPos.z <= 2.3f) {
+            duckPos -= 0.3f;
+        }
+        else {
+            moveDuck = true;
+            if (duckPos.z >= 5.4f) {
+                duckPos += 0.8f;
+            }
+            else {
+                moveDuck = false;
+            }
+        }
 
         //==========TEXT==========//
         //Text->RenderText("Holiwas", -0.45f, 0.7f, 0.001f, glm::vec3(0.0, 0.0, 0.0));
@@ -273,23 +320,27 @@ void initScene(Shader ourShader)
     models.push_back(Model("closet", "models/closet.obj", glm::vec3(16.4603, 3.29999, -7.75018), glm::vec3(0, 0, 0), 0.0f, 2.0f));//9
     models.push_back(Model("Flower", "models/Flower.obj", glm::vec3(26.8803, 0.00999082, 5.05994), glm::vec3(0, 0, 0), 0.0f, 1.0f));//10
     models.push_back(Model("Flower2", "models/Flower.obj", glm::vec3(29.4104, -0.139999, 12.1401), glm::vec3(0, 0, 0), 0.0f, 1.0f));//11
-    models.push_back(Model("Grass", "models/Grass.obj", glm::vec3(9.97011, -0.1, 14.8301), glm::vec3(0, 0, 0), 0.0f, 1.0f));//con initScale se pone su tamaño original
-    models.push_back(Model("Grass2", "models/Grass.obj", glm::vec3(rand() % 31 + 16, -0.1, rand() % 14 + 11), glm::vec3(0, 0, 0), 0.0f, 1.0f));//12
-    models.push_back(Model("Grass3", "models/Grass.obj", glm::vec3(rand() % 25 + 15, -0.1, rand() % 14 + 11), glm::vec3(0, 0, 0), 0.0f, 1.0f));//13
-    models.push_back(Model("Grass3", "models/Grass.obj", glm::vec3(rand() % 15 + 1, -0.1, rand() % 14 + 11), glm::vec3(0, 0, 0), 0.0f, 1.0f));//14
-    models.push_back(Model("Rama", "models/rama.obj", glm::vec3(2.6, -0.1, -4.3), glm::vec3(0, 0, 0), 0.0f, 2));//15
-    models.push_back(Model("stone", "models/stone.obj", glm::vec3(10.0001, -0.12, 8.35002), glm::vec3(0, 0, 0), 0.0f, initScale));//16
-    models.push_back(Model("stone2", "models/stone.obj", glm::vec3(rand() % 10 + 5, -0.12, rand() % 8 - 10), glm::vec3(0, 0, 0), 0.0f, initScale));//17
-    models.push_back(Model("stone3", "models/stone.obj", glm::vec3(rand() % 5 + 1, -0.12, rand() % 5 - 7), glm::vec3(0, 0, 0), 0.0f, initScale));//18
-    models.push_back(Model("stone2", "models/stone.obj", glm::vec3(rand() % 10 + 1, -0.12, rand() % 9 - 5), glm::vec3(0, 0, 0), 0.0f, initScale));//19
-    models.push_back(Model("stone3", "models/stone.obj", glm::vec3(rand() % 8 + 1, -0.12, rand() % 10 - 10), glm::vec3(0, 0, 0), 0.0f, initScale));//20
-    models.push_back(Model("Stump", "models/Stump.obj", glm::vec3(3.25, -0.0299998, -4.03002), glm::vec3(0, 0, 0), 0.0f, 0.5));//20
-    models.push_back(Model("tv", "models/tv.obj", glm::vec3(35.4, 0.71, -6.60005), glm::vec3(0, 180, 0), 0.0f, 2.0f));//21
+    models.push_back(Model("Grass", "models/Grass.obj", glm::vec3(9.97011, -0.1, 14.8301), glm::vec3(0, 0, 0), 0.0f, 1.0f));//12 con initScale se pone su tamaño original
+    models.push_back(Model("Grass2", "models/Grass.obj", glm::vec3(rand() % 31 + 16, -0.1, rand() % 14 + 11), glm::vec3(0, 0, 0), 0.0f, 1.0f));//13
+    models.push_back(Model("Grass3", "models/Grass.obj", glm::vec3(rand() % 25 + 15, -0.1, rand() % 14 + 11), glm::vec3(0, 0, 0), 0.0f, 1.0f));//14
+    models.push_back(Model("Grass3", "models/Grass.obj", glm::vec3(rand() % 15 + 1, -0.1, rand() % 14 + 11), glm::vec3(0, 0, 0), 0.0f, 1.0f));//15
+    models.push_back(Model("Rama", "models/rama.obj", glm::vec3(2.6, -0.1, -4.3), glm::vec3(0, 0, 0), 0.0f, 2));//16
+    models.push_back(Model("stone", "models/stone.obj", glm::vec3(10.0001, -0.12, 8.35002), glm::vec3(0, 0, 0), 0.0f, initScale));//17
+    models.push_back(Model("stone2", "models/stone.obj", glm::vec3(rand() % 10 + 5, -0.12, rand() % 8 - 10), glm::vec3(0, 0, 0), 0.0f, initScale));//18
+    models.push_back(Model("stone3", "models/stone.obj", glm::vec3(rand() % 5 + 1, -0.12, rand() % 5 - 7), glm::vec3(0, 0, 0), 0.0f, initScale));//19
+    models.push_back(Model("stone2", "models/stone.obj", glm::vec3(rand() % 10 + 1, -0.12, rand() % 9 - 5), glm::vec3(0, 0, 0), 0.0f, initScale));//20
+    models.push_back(Model("stone3", "models/stone.obj", glm::vec3(rand() % 8 + 1, -0.12, rand() % 10 - 10), glm::vec3(0, 0, 0), 0.0f, initScale));//21
+    models.push_back(Model("Stump", "models/Stump.obj", glm::vec3(3.25, -0.0299998, -4.03002), glm::vec3(0, 0, 0), 0.0f, 0.5));//22
+    models.push_back(Model("tv", "models/tv.obj", glm::vec3(35.4, 0.71, -6.60005), glm::vec3(0, 180, 0), 0.0f, 2.0f));//23
     //models.push_back(Model("fire", "models/fire.obj", glm::vec3(-11.1, 0.5, 8.4), glm::vec3(0, 0, 0), 0.0f, 1));
-    models.push_back(Model("lights", "models/lights.obj", glm::vec3(34.1304, 1.12, -3.21007), glm::vec3(0, 0, 0), 0.0f, 1.5f));//22
+    models.push_back(Model("lights", "models/lights.obj", glm::vec3(34.1304, 1.12, -3.21007), glm::vec3(0, 0, 0), 0.0f, 1.5f));//24
     //models.push_back(Model("bath", "models/bath.obj", glm::vec3(-8.4, 0.5, -5.5), glm::vec3(0, 0, 0), 0.0f, 1));
-    models.push_back(Model("box", "models/box.obj", glm::vec3(35.2304, 0.93, -9.30019), glm::vec3(0, 0, 0), 0.0f, 1));//23
-
+    models.push_back(Model("box", "models/box.obj", glm::vec3(35.2304, 0.93, -9.30019), glm::vec3(0, 0, 0), 0.0f, 1));//25
+    models.push_back(Model("birds", "models/birds.obj", glm::vec3(5, 15, 5), glm::vec3(0, 0, 0), 0.0f, 2));//26
+    //                                                            -5.10004, 15,-6.39007 -> animacion
+    models.push_back(Model("duck", "models/duck.obj", glm::vec3(-11.0802, -0.58, 5.47003), glm::vec3(0, 0, 0), 0.0f, 1));//27
+    //                                                          -11.0802, -0.58, 2.29   -> adelante
+    //                                                          -14.2903, -0.58,1.52    -> diagonal
 
     //pickModel.push_back(Model("key", "models/key.obj", glm::vec3(7.25, 0.2, -1.66), glm::vec3(0, 0, 0), 0.0f, 0.1));
     //=======CONSTRUCTION===========//
@@ -382,7 +433,7 @@ void initScene(Shader ourShader)
     
 
     //==========GAME START==========//
-    MessageBox(NULL, L"Encuentra las 3 llaves para poder escapar\nEnter o cualquier boton para continuar", L"START", MB_ICONHAND || MB_ICONHAND);
+    //MessageBox(NULL, L"Encuentra las 3 llaves para poder escapar\nEnter o cualquier boton para continuar", L"START", MB_ICONHAND || MB_ICONHAND);
 
     //=======TEXT=======//
     Text = new TextRenderer(SCR_WIDTH, SCR_HEIGHT);
@@ -417,26 +468,26 @@ void loadEnviroment(Terrain *terrain, SkyBox *sky, glm::mat4 view, glm::mat4 pro
     loadAnim(view, projection);
 
     //========RAIN ANIMATION========//
-    if (changeSky >= 60 && changeSky <= 60.1) {
-        mainLight = vec3(0.2);
-        //sky->reloadTexture("5");    //file name with the other sky:)
-        //changeSprite = !changeSprite;
-    }
-    if (changeSky >= 30 && changeSky <= 30.1) {
-        mainLight = vec3(0.25);
-    }
-    if (changeSky >= 60 && changeSky <= 60.1) {
-        mainLight = vec3(0.2);
-       // sky->reloadTexture("5");    //file name with the other sky:)
-    }
-    if (changeSky >= 90 && changeSky <= 90.1) {
-        mainLight = vec3(0.15);
-        //sky->reloadTexture("5");    //file name with the other sky:)
-        changeSprite = !changeSprite;
-    }
-    if (changeSky >= 150 && changeSky <= 150.1) {
-        mainLight = vec3(0.1);
-    }
+    //if (changeSky >= 60 && changeSky <= 60.1) {
+    //    mainLight = vec3(0.2);
+    //    //sky->reloadTexture("5");    //file name with the other sky:)
+    //    //changeSprite = !changeSprite;
+    //}
+    //if (changeSky >= 30 && changeSky <= 30.1) {
+    //    mainLight = vec3(0.25);
+    //}
+    //if (changeSky >= 60 && changeSky <= 60.1) {
+    //    mainLight = vec3(0.2);
+    //   // sky->reloadTexture("5");    //file name with the other sky:)
+    //}
+    //if (changeSky >= 90 && changeSky <= 90.1) {
+    //    mainLight = vec3(0.15);
+    //    //sky->reloadTexture("5");    //file name with the other sky:)
+    //    changeSprite = !changeSprite;
+    //}
+    //if (changeSky >= 150 && changeSky <= 150.1) {
+    //    mainLight = vec3(0.1);
+    //}
 
    
     //glm::vec3(enemyPos) = enemy.getPosition();      //cambiar para utilizar un getPosition de la camara y un setPosition para
