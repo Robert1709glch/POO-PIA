@@ -18,6 +18,9 @@
 #include "Class.h"
 #include <engine/camera.h>
 #include <ctime>
+#include <time.h>
+
+#define TIMER 100
 
 int main()
 {
@@ -97,18 +100,24 @@ int main()
 
         //:::: KEY ANIMATION :::://
         glm::vec3 keyPosition = models[0].getPosition();
+        
         if (keyPosition.y <= 2.0f && !moveKey) {
             keyPosition.y += 0.10f * deltaTime;
+            keyRot = 0;
+            keyRot < 360 ? keyRot += 0.1f : keyRot = 0;
         }
         else {
             moveKey = true;
             if (keyPosition.y >= 1.7f) {
                 keyPosition.y -= 0.07f * deltaTime;
+                keyRot = 0;
+                keyRot < 360 ? keyRot += 0.1f : keyRot = 0;
             }
             else {
                 moveKey = false;
             }
         }models[0].setPosition(keyPosition);
+        ke.setRotation(glm::vec3(Y), keyRot);
 
         glm::vec3 keyPosition2 = models[1].getPosition();
         if (keyPosition2.y <= 1.5f && !moveKey2) {
@@ -182,31 +191,31 @@ int main()
         }models[11].setPosition(flowerPos);
 
         //:::: DUCK ANIMATION :::://
-        //glm::vec3 duckPos = models[27].getPosition();
-        //if (duckPos.x <= -4.2f) {
-        //    duckPos.x -= 0.6f * deltaTime;
-        //}
-        //else {
-        //    moveDuck = true;
-        //    if (duckPos.x >= -5.0f) {//-8.2
-        //        duckPos.x += 0.6f * deltaTime;
-        //    }
-        //    else {
-        //        moveDuck = false;
-        //    }
-        //}models[27].setPosition(duckPos);
-
-
-        glm::vec3 posicion(enemy.getPosition());
-        if (posicion.x == camera.Position.x) {
-            enemy.setPosition(glm::vec3(camera.Position.x + i, camera.Position.y, camera.Position.z - 2));
-            i = i + 1 * deltaTime;
-            //i = 0;
+        glm::vec3 duckPos = models[27].getPosition();
+        if (duckPos.x <= -4.2f) {
+            duckPos.x -= 0.6f * deltaTime;
         }
         else {
-            enemy.setPosition(glm::vec3(camera.Position.x - i, camera.Position.y, camera.Position.z - 2));
-            i = i + i * deltaTime;
-        }
+            moveDuck = true;
+            if (duckPos.x >= -5.0f) {//-8.2
+                duckPos.x += 0.6f * deltaTime;
+            }
+            else {
+                moveDuck = false;
+            }
+        }models[27].setPosition(duckPos);
+
+        /*HASTA LA PROXIMA*/
+        //glm::vec3 posicion(enemy.getPosition());
+        //if (posicion.x == camera.Position.x) {
+        //    enemy.setPosition(glm::vec3(camera.Position.x + i, camera.Position.y, camera.Position.z - 2));
+        //    i = i + 1 * deltaTime;
+        //    //i = 0;
+        //}
+        //else {
+        //    enemy.setPosition(glm::vec3(camera.Position.x - i, camera.Position.y, camera.Position.z - 2));
+        //    i = i + i * deltaTime;
+        //}
 
         /*if (i == 7) {
             enemy.setPosition(glm::vec3(camera.Position.x + i, camera.Position.y, camera.Position.z - 2));
@@ -271,12 +280,30 @@ int main()
 
         //:::: PUERTA :::://
         if (isDoorOpen == true) {
-            CollisionBox collbox;
-            glm::vec4 colorCollbox(0.41f, 0.2f, 0.737f, 0.06f);
-            collbox = CollisionBox(glm::vec3(26.8704, 2.85975, 4.94002), glm::vec3(2.36, 3.46, 0.5), colorCollbox);
-            collboxes.insert(pair<int, pair<string, CollisionBox>>(6, pair<string, CollisionBox>("puerta", collbox)));
-            isDoorOpen = false;
+            CollisionBox collbox2;
+            glm::vec4 colorCollbox2(0.41f, 0.2f, 0.737f, 0.06f);
+            collbox2 = CollisionBox(glm::vec3(26.8704, 2.85975, 4.94002), glm::vec3(2.36, 3.46, 0.5), colorCollbox2);
+            collboxes.insert(pair<int, pair<string, CollisionBox>>(13, pair<string, CollisionBox>("puerta", collbox2)));
+            //isDoorOpen = false;
         }
+
+        //:::: ROTACION :::://
+       
+       /* if (timer != 0) {
+            if (timer < 0) {
+                timer = timer + 1;
+                Sleep(80);
+            }
+            else {
+                timer = timer - 1;
+                Sleep(80);
+            }
+        }
+        if (timer == 0.0) {
+            MessageBox(NULL, L"SI JALA", L"WOW", MB_ICONHAND | MB_ICONHAND);
+        }*/
+
+
         ////=======PARTICLES=======//
         //rains = Particles("textures/particulas/rain.png");
         ////MOVEMENT VALUES//
@@ -336,6 +363,7 @@ int main()
     //======WATER PLANE=========//
     plane.Release();
     glfwTerminate();
+    KillTimer(NULL, TIMER);
 
     return 0;
 }
@@ -344,6 +372,11 @@ void initScene(Shader ourShader)
 {
     //INITIALIZE SRAND VARIABLE
     srand(time(0));
+    //TIMER
+    SetTimer(NULL, TIMER, 30, NULL);
+    /*skyRotation =
+    skyRotation < 360 ? skyRotation += 0.1f : skyRotation = 0;*/
+    timer = WM_TIMER;
     //AGUA
     //:::: DEFINIMOS LAS TEXTURAS DE LA MULTITEXTURA DEL TERRENO :::://
     texturePaths = new const char *[4];
@@ -451,6 +484,35 @@ void initScene(Shader ourShader)
     collboxes.insert(pair<int, pair<string, CollisionBox>>(4, pair<string, CollisionBox>("techo", collbox)));
     collbox = CollisionBox(glm::vec3(18.7502, 0.899866, -4.66011), glm::vec3(0.49, 0.5, 0.5), colorCollbox);
     collboxes.insert(pair<int, pair<string, CollisionBox>>(5, pair<string, CollisionBox>("enemigo", collbox)));
+    collbox = CollisionBox(glm::vec3(29.6004, 2.54987, -7.67021), glm::vec3(0.49, 0.5, 0.5), colorCollbox);
+    collboxes.insert(pair<int, pair<string, CollisionBox>>(6, pair<string, CollisionBox>("enemigo2", collbox)));
+    collbox = CollisionBox(glm::vec3(35.6599, 2.22987, -3.02013), glm::vec3(0.49, 0.5, 0.5), colorCollbox);
+    collboxes.insert(pair<int, pair<string, CollisionBox>>(7, pair<string, CollisionBox>("enemigo3", collbox)));
+    collbox = CollisionBox(glm::vec3(35.7399, 2.11987, 1.26987), glm::vec3(0.49, 0.5, 0.5), colorCollbox);
+    collboxes.insert(pair<int, pair<string, CollisionBox>>(8, pair<string, CollisionBox>("enemigo4", collbox)));
+    collbox = CollisionBox(glm::vec3(18.3802, 1.41987, -9.28025), glm::vec3(0.49, 0.5, 0.5), colorCollbox);
+    collboxes.insert(pair<int, pair<string, CollisionBox>>(9, pair<string, CollisionBox>("enemigo5", collbox)));
+    collbox = CollisionBox(glm::vec3(22.1803, 1.27987, -2.48013), glm::vec3(0.49, 0.5, 0.5), colorCollbox);
+    collboxes.insert(pair<int, pair<string, CollisionBox>>(10, pair<string, CollisionBox>("enemigo6", collbox)));
+    collbox = CollisionBox(glm::vec3(16.4001,5.02989,-2.5901), glm::vec3(0.49, 0.5, 0.5), colorCollbox);
+    collboxes.insert(pair<int, pair<string, CollisionBox>>(11, pair<string, CollisionBox>("enemigo7", collbox)));
+    collbox = CollisionBox(glm::vec3(21.1603,5.32989,-8.4102), glm::vec3(0.49, 0.5, 0.5), colorCollbox);
+    collboxes.insert(pair<int, pair<string, CollisionBox>>(12, pair<string, CollisionBox>("enemigo8", collbox)));
+    /*
+    if (timer != 0) {
+        if (timer < 0) {
+            timer = timer + 1;
+            Sleep(80);
+        }
+        else {
+            timer = timer - 1;
+            Sleep(80);
+        }
+    }
+    if (timer == 0.0) {
+        MessageBox(NULL, L"SI JALA", L"WOW", MB_ICONHAND | MB_ICONHAND);
+    }
+    */
     /*if (isDoorOpen == true) {
         collbox = CollisionBox(glm::vec3(26.8704, 2.85975, 4.94002), glm::vec3(2.36, 3.46, 0.5), colorCollbox);
         collboxes.insert(pair<int, pair<string, CollisionBox>>(6, pair<string, CollisionBox>("puerta", collbox)));
@@ -494,8 +556,36 @@ void initScene(Shader ourShader)
     //==========BILLBOARD==========//
     //particles = Particles("textures/particulas.png");
     enemy = Billboard("textures/enemigo.png", (float)SCR_WIDTH, (float)SCR_HEIGHT, 453.5f, 768.0f);//907.0f, 1536.0f
-    //enemy.setPosition(glm::vec3(18.7502, 0.0, -4.66011));//-4.0f, 0.2f, 0.0f
+    enemy.setPosition(glm::vec3(18.7502, 0.0, -4.66011));//-4.0f, 0.2f, 0.0f
     enemy.setScale(1.5f);
+
+    enemy2 = Billboard("textures/enemigo.png", (float)SCR_WIDTH, (float)SCR_HEIGHT, 453.5f, 768.0f);//907.0f, 1536.0f
+    enemy2.setPosition(glm::vec3(29.6004, 0.7, -7.67021));//-4.0f, 0.2f, 0.0f
+    enemy2.setScale(1.5f);
+
+    enemy3 = Billboard("textures/enemigo.png", (float)SCR_WIDTH, (float)SCR_HEIGHT, 453.5f, 768.0f);//907.0f, 1536.0f
+    enemy3.setPosition(glm::vec3(35.6599, 0.7, -3.02013));//-4.0f, 0.2f, 0.0f
+    enemy3.setScale(1.5f);
+
+    enemy4 = Billboard("textures/enemigo.png", (float)SCR_WIDTH, (float)SCR_HEIGHT, 453.5f, 768.0f);//907.0f, 1536.0f
+    enemy4.setPosition(glm::vec3(34.7399, 0.7, 1.26987));//-4.0f, 0.2f, 0.0f
+    enemy4.setScale(1.5f);
+
+    enemy5 = Billboard("textures/enemigo.png", (float)SCR_WIDTH, (float)SCR_HEIGHT, 453.5f, 768.0f);//907.0f, 1536.0f
+    enemy5.setPosition(glm::vec3(18.3802, 0.0, -9.28025));//-4.0f, 0.2f, 0.0f
+    enemy5.setScale(1.5f);
+
+    enemy6 = Billboard("textures/enemigo.png", (float)SCR_WIDTH, (float)SCR_HEIGHT, 453.5f, 768.0f);//907.0f, 1536.0f
+    enemy6.setPosition(glm::vec3(22.1803, 0.0, -2.48013));//-4.0f, 0.2f, 0.0f
+    enemy6.setScale(1.5f);
+
+    enemy7 = Billboard("textures/enemigo.png", (float)SCR_WIDTH, (float)SCR_HEIGHT, 453.5f, 768.0f);//907.0f, 1536.0f
+    enemy7.setPosition(glm::vec3(16.4001, 4.0, -2.5901));//-4.0f, 0.2f, 0.0f
+    enemy7.setScale(1.5f);
+
+    enemy8 = Billboard("textures/enemigo.png", (float)SCR_WIDTH, (float)SCR_HEIGHT, 453.5f, 768.0f);//907.0f, 1536.0f
+    enemy8.setPosition(glm::vec3(21.1603, 3.2, -8.4102));//-4.0f, 0.2f, 0.0f
+    enemy8.setScale(1.5f);
     
     
     
@@ -614,6 +704,13 @@ void loadEnviroment(Terrain *terrain, SkyBox *sky, glm::mat4 view, glm::mat4 pro
 void loadAnim(glm::mat4 view, glm::mat4 projection) {
     
     enemy.Draw(camera, round(enemyX), round(enemyY));
+    enemy2.Draw(camera, round(enemyX), round(enemyY));
+    enemy3.Draw(camera, round(enemyX), round(enemyY));
+    enemy4.Draw(camera, round(enemyX), round(enemyY));
+    enemy5.Draw(camera, round(enemyX), round(enemyY));
+    enemy6.Draw(camera, round(enemyX), round(enemyY));
+    enemy7.Draw(camera, round(enemyX), round(enemyY));
+    enemy8.Draw(camera, round(enemyX), round(enemyY));
     //========WATER ANIMATION========//
     if (animWaterY <= 4.0f && animWaterX <= 4.0f && !is_water_out) {
         animWaterX += 0.001f;

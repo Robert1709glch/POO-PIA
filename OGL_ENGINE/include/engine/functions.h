@@ -140,7 +140,7 @@ void processInput(GLFWwindow *window)
         }
         /////////////////////////////////////
         if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS) {//PAUSE
-            MessageBox(NULL, L"Menu pausa\nPulse enter o un boton para continuar.", L"PAUSE", MB_ICONHAND || MB_ICONHAND);
+            //MessageBox(NULL, L"Menu pausa\nPulse enter o un boton para continuar.", L"PAUSE", MB_ICONHAND || MB_ICONHAND);
         }
         if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS) {//AGARRAR OBJETOS
             isPick = true;
@@ -680,18 +680,132 @@ void collidedObject_callback(string nameCollidedObject)
     }
     if (nameCollidedObject == "puerta") {
         n_exit = true;
-        glm::vec3 keyPosition4 = models[9].getPosition();
-        keyPosition4.x = 0;
-        keyPosition4.y = 0;
-        keyPosition4.z = 0;
-        models[9].setPosition(keyPosition4);
+        if (n_exit == true && keys == 3) {
+            MessageBox(NULL, L"3 llaves", L"GANASTE", MB_ICONHAND || MB_ICONHAND);
+            n_exit = false;
+            isDoorOpen = false;
+            glfwTerminate();
+            exit(0);
+        }
+    }    
+    if (nameCollidedObject == "enemigo2") {
+        if (timer != 0) {
+            if (timer < 0) {
+                timer = timer + 1;
+                Sleep(7);
+            }
+            else {
+                timer = timer - 1;
+                Sleep(7);
+            }
+        }
+        if (timer == 0.0) {
+            MessageBox(NULL, L"Moriste", L"FIN DEL JUEGO", MB_ICONHAND || MB_ICONHAND);
+            glfwTerminate();
+            exit(0);
+        }
     }
-    if (n_exit == true && keys == 3) {
-        MessageBox(NULL, L"3 llaves", L"GANASTE", MB_ICONHAND || MB_ICONHAND);
-        n_exit = false;
-        isDoorOpen = false;
-        glfwTerminate();
-        exit(0);
+    if (nameCollidedObject == "enemigo3") {
+        if (timer != 0) {
+            if (timer < 0) {
+                timer = timer + 1;
+                Sleep(7);
+            }
+            else {
+                timer = timer - 1;
+                Sleep(7);
+            }
+        }
+        if (timer == 0.0) {
+            MessageBox(NULL, L"Moriste", L"FIN DEL JUEGO", MB_ICONHAND || MB_ICONHAND);
+            glfwTerminate();
+            exit(0);
+        }
+    }
+    if (nameCollidedObject == "enemigo4") {
+        if (timer != 0) {
+            if (timer < 0) {
+                timer = timer + 1;
+                Sleep(7);
+            }
+            else {
+                timer = timer - 1;
+                Sleep(7);
+            }
+        }
+        if (timer == 0.0) {
+            MessageBox(NULL, L"Moriste", L"FIN DEL JUEGO", MB_ICONHAND || MB_ICONHAND);
+            glfwTerminate();
+            exit(0);
+        }
+    }
+    if (nameCollidedObject == "enemigo5") {
+        if (timer != 0) {
+            if (timer < 0) {
+                timer = timer + 1;
+                Sleep(7);
+            }
+            else {
+                timer = timer - 1;
+                Sleep(7);
+            }
+        }
+        if (timer == 0.0) {
+            MessageBox(NULL, L"Moriste", L"FIN DEL JUEGO", MB_ICONHAND || MB_ICONHAND);
+            glfwTerminate();
+            exit(0);
+        }
+    }
+    if (nameCollidedObject == "enemigo6") {
+        if (timer != 0) {
+            if (timer < 0) {
+                timer = timer + 1;
+                Sleep(7);
+            }
+            else {
+                timer = timer - 1;
+                Sleep(7);
+            }
+        }
+        if (timer == 0.0) {
+            MessageBox(NULL, L"Moriste", L"FIN DEL JUEGO", MB_ICONHAND || MB_ICONHAND);
+            glfwTerminate();
+            exit(0);
+        }
+    }
+    if (nameCollidedObject == "enemigo7") {
+        if (timer != 0) {
+            if (timer < 0) {
+                timer = timer + 1;
+                Sleep(7);
+            }
+            else {
+                timer = timer - 1;
+                Sleep(7);
+            }
+        }
+        if (timer == 0.0) {
+            MessageBox(NULL, L"Moriste", L"FIN DEL JUEGO", MB_ICONHAND || MB_ICONHAND);
+            glfwTerminate();
+            exit(0);
+        }
+    }
+    if (nameCollidedObject == "enemigo8") {
+        if (timer != 0) {
+            if (timer < 0) {
+                timer = timer + 1;
+                Sleep(7);
+            }
+            else {
+                timer = timer - 1;
+                Sleep(7);
+            }
+        }
+        if (timer == 0.0) {
+            MessageBox(NULL, L"Moriste", L"FIN DEL JUEGO", MB_ICONHAND || MB_ICONHAND);
+            glfwTerminate();
+            exit(0);
+        }
     }
     /*if (nameCollidedObject == "techo") {
         MessageBox(NULL, L"techo jsjs", L"GANASTE", MB_ICONHAND || MB_ICONHAND);

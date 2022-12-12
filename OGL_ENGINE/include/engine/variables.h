@@ -99,6 +99,13 @@ TextRenderer* Text;
 
 //=======BILLBOARD=======//
 Billboard enemy;
+Billboard enemy2;
+Billboard enemy3;
+Billboard enemy4;
+Billboard enemy5;
+Billboard enemy6;
+Billboard enemy7;
+Billboard enemy8;
 float enemyX = 0.0f, enemyY = 0.0f, enemyZ = 0.0f;
 bool isMoving = true;
 float i = 0;
@@ -133,6 +140,8 @@ bool moveKey = false;
 bool moveKey2 = false;
 bool moveKey3 = false;
 bool moveFlower = false;
+Model ke;
+float keyRot;
 
 //==========BIRD ANIMATION==========//
 bool moveBird = false;
@@ -140,9 +149,15 @@ bool moveBird = false;
 //==========DUCK ANIMATION==========//
 bool moveDuck = false;
 
-//==========DUCK ANIMATION==========//
+//==========FISH ANIMATION==========//
 bool moveFish = false;
 bool moveFish2 = false;
+
+//==========ROTACIONES==========//
+float skyRotation;
+
+//==========TIMER==========//
+float timer = 0;
 
 
 //:::: VECTORES :::://
