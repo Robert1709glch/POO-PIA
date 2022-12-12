@@ -97,6 +97,9 @@ Plane plane;
 //=======TEXT=======//
 TextRenderer* Text;
 
+//==========TIMER==========//
+float timer = 0;
+
 //=======BILLBOARD=======//
 Billboard enemy;
 Billboard enemy2;
@@ -156,8 +159,7 @@ bool moveFish2 = false;
 //==========ROTACIONES==========//
 float skyRotation;
 
-//==========TIMER==========//
-float timer = 0;
+
 
 
 //:::: VECTORES :::://

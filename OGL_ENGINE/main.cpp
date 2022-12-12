@@ -70,7 +70,8 @@ int main()
     //:::: RENDER:::://
     while (!glfwWindowShouldClose(window))
     {
-
+        keyRot = 0;
+        keyRot < 360 ? keyRot += 0.1f : keyRot = 0;
         //::::TIMING:::://Ayuda a crear animaciones fluidas
         float currentFrame = glfwGetTime();
         deltaTime = (currentFrame - lastFrame);
@@ -103,21 +104,18 @@ int main()
         
         if (keyPosition.y <= 2.0f && !moveKey) {
             keyPosition.y += 0.10f * deltaTime;
-            keyRot = 0;
-            keyRot < 360 ? keyRot += 0.1f : keyRot = 0;
+            ke.setRotation(glm::vec3(Y), keyRot);
         }
         else {
             moveKey = true;
             if (keyPosition.y >= 1.7f) {
                 keyPosition.y -= 0.07f * deltaTime;
-                keyRot = 0;
-                keyRot < 360 ? keyRot += 0.1f : keyRot = 0;
+                ke.setRotation(glm::vec3(Y), keyRot);
             }
             else {
                 moveKey = false;
             }
         }models[0].setPosition(keyPosition);
-        ke.setRotation(glm::vec3(Y), keyRot);
 
         glm::vec3 keyPosition2 = models[1].getPosition();
         if (keyPosition2.y <= 1.5f && !moveKey2) {
@@ -372,11 +370,10 @@ void initScene(Shader ourShader)
 {
     //INITIALIZE SRAND VARIABLE
     srand(time(0));
-    //TIMER
+
     SetTimer(NULL, TIMER, 30, NULL);
-    /*skyRotation =
-    skyRotation < 360 ? skyRotation += 0.1f : skyRotation = 0;*/
     timer = WM_TIMER;
+
     //AGUA
     //:::: DEFINIMOS LAS TEXTURAS DE LA MULTITEXTURA DEL TERRENO :::://
     texturePaths = new const char *[4];
@@ -474,23 +471,23 @@ void initScene(Shader ourShader)
     glm::vec4 colorCollbox(0.41f, 0.2f, 0.737f, 0.06f);
     collbox = CollisionBox(glm::vec3(36.8693, 3.09, -0.860156), glm::vec3(0.3, 4.75, 10.1101), colorCollbox);
     collboxes.insert(pair<int, pair<string, CollisionBox>>(0, pair<string, CollisionBox>("pared_atras", collbox)));
-    collbox = CollisionBox(glm::vec3(14.96, 3.2, -4.02), glm::vec3(0.49, 7.01, 12.93), colorCollbox);
+    collbox = CollisionBox(glm::vec3(14.96, 4.15, -3.32), glm::vec3(0.5, 8.13003, 17.7901), colorCollbox);
     collboxes.insert(pair<int, pair<string, CollisionBox>>(1, pair<string, CollisionBox>("pared_frente_izq", collbox)));
     collbox = CollisionBox(glm::vec3(25.0, 3.95, -13.27), glm::vec3(14.97, 8.11, 0.5), colorCollbox);
     collboxes.insert(pair<int, pair<string, CollisionBox>>(2, pair<string, CollisionBox>("pared_frente_der", collbox)));
-    collbox = CollisionBox(glm::vec3(19.54, 1.89, 6.71), glm::vec3(5.18, 3.96, 0.5), colorCollbox);
+    collbox = CollisionBox(glm::vec3(19.36, 5.12002, 6.94001), glm::vec3(6.08002, 9.71013, 0.5), colorCollbox);
     collboxes.insert(pair<int, pair<string, CollisionBox>>(3, pair<string, CollisionBox>("pared_frente_arriba", collbox)));
     collbox = CollisionBox(glm::vec3(28.5604, 10, -0.8501), glm::vec3(9.3101, 0.49, 5), colorCollbox);
     collboxes.insert(pair<int, pair<string, CollisionBox>>(4, pair<string, CollisionBox>("techo", collbox)));
     collbox = CollisionBox(glm::vec3(18.7502, 0.899866, -4.66011), glm::vec3(0.49, 0.5, 0.5), colorCollbox);
     collboxes.insert(pair<int, pair<string, CollisionBox>>(5, pair<string, CollisionBox>("enemigo", collbox)));
-    collbox = CollisionBox(glm::vec3(29.6004, 2.54987, -7.67021), glm::vec3(0.49, 0.5, 0.5), colorCollbox);
+    collbox = CollisionBox(glm::vec3(29.6004, 1.46987, -7.62021), glm::vec3(0.49, 0.5, 0.5), colorCollbox);
     collboxes.insert(pair<int, pair<string, CollisionBox>>(6, pair<string, CollisionBox>("enemigo2", collbox)));
-    collbox = CollisionBox(glm::vec3(35.6599, 2.22987, -3.02013), glm::vec3(0.49, 0.5, 0.5), colorCollbox);
+    collbox = CollisionBox(glm::vec3(35.6599, 1.59987, -3.02013), glm::vec3(0.49, 0.5, 0.5), colorCollbox);
     collboxes.insert(pair<int, pair<string, CollisionBox>>(7, pair<string, CollisionBox>("enemigo3", collbox)));
-    collbox = CollisionBox(glm::vec3(35.7399, 2.11987, 1.26987), glm::vec3(0.49, 0.5, 0.5), colorCollbox);
+    collbox = CollisionBox(glm::vec3(34.6601, 1.55987, 1.29987), glm::vec3(0.49, 0.5, 0.5), colorCollbox);
     collboxes.insert(pair<int, pair<string, CollisionBox>>(8, pair<string, CollisionBox>("enemigo4", collbox)));
-    collbox = CollisionBox(glm::vec3(18.3802, 1.41987, -9.28025), glm::vec3(0.49, 0.5, 0.5), colorCollbox);
+    collbox = CollisionBox(glm::vec3(18.3802, 0.97987, -9.25025), glm::vec3(0.49, 0.5, 0.5), colorCollbox);
     collboxes.insert(pair<int, pair<string, CollisionBox>>(9, pair<string, CollisionBox>("enemigo5", collbox)));
     collbox = CollisionBox(glm::vec3(22.1803, 1.27987, -2.48013), glm::vec3(0.49, 0.5, 0.5), colorCollbox);
     collboxes.insert(pair<int, pair<string, CollisionBox>>(10, pair<string, CollisionBox>("enemigo6", collbox)));

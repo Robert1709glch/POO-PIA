@@ -618,6 +618,8 @@ void scroll_callback(GLFWwindow *window, double xoffset, double yoffset)
 
 void collidedObject_callback(string nameCollidedObject)
 {
+    ENEMIGO1 enemigo1;
+    ENEMIGO2 enemigo2;
     //SI OCURRE UNA COLISIÓN HACEMOS ALGO
     if (nameCollidedObject == "key" && isPick == true) {
         n_key = true;
@@ -667,17 +669,6 @@ void collidedObject_callback(string nameCollidedObject)
             isDoorOpen = true;
         keys += 1;
     }
-    if (nameCollidedObject == "enemigo") {
-        MessageBox(NULL, L"Moriste", L"FIN DEL JUEGO", MB_ICONHAND || MB_ICONHAND);
-        glfwTerminate();
-        exit(0);
-        /*n_dead = true;
-        glm::vec3 dead = models[2].getPosition();
-        dead.x = 0;
-        dead.y = 0;
-        dead.z = 0;
-        models[2].setPosition(dead);*/
-    }
     if (nameCollidedObject == "puerta") {
         n_exit = true;
         if (n_exit == true && keys == 3) {
@@ -687,9 +678,17 @@ void collidedObject_callback(string nameCollidedObject)
             glfwTerminate();
             exit(0);
         }
-    }    
+    }
+    if (nameCollidedObject == "enemigo") {
+        enemigo1.ataque(timer);
+        if (enemigo1.timeOut == true) {
+            MessageBox(NULL, L"Moriste", L"FIN DEL JUEGO", MB_ICONHAND || MB_ICONHAND);
+            glfwTerminate();
+            exit(0);
+        }
+    }
     if (nameCollidedObject == "enemigo2") {
-        if (timer != 0) {
+        /*if (timer != 0) {
             if (timer < 0) {
                 timer = timer + 1;
                 Sleep(7);
@@ -698,66 +697,70 @@ void collidedObject_callback(string nameCollidedObject)
                 timer = timer - 1;
                 Sleep(7);
             }
-        }
-        if (timer == 0.0) {
+        }*/
+        enemigo1.ataque(timer);
+        if (enemigo1.timeOut == true) {
             MessageBox(NULL, L"Moriste", L"FIN DEL JUEGO", MB_ICONHAND || MB_ICONHAND);
             glfwTerminate();
             exit(0);
         }
     }
     if (nameCollidedObject == "enemigo3") {
-        if (timer != 0) {
-            if (timer < 0) {
-                timer = timer + 1;
+        enemigo2.ataque(timer);
+        /*if (hola.timer2 != 0) {
+            if (hola.timer2 < 0) {
+                hola.timer2 = hola.timer2 + 1;
                 Sleep(7);
             }
             else {
-                timer = timer - 1;
+                hola.timer2 = hola.timer2 - 1;
                 Sleep(7);
             }
-        }
-        if (timer == 0.0) {
+        }*/
+        if (enemigo2.timeOut == true) {
             MessageBox(NULL, L"Moriste", L"FIN DEL JUEGO", MB_ICONHAND || MB_ICONHAND);
             glfwTerminate();
             exit(0);
         }
     }
     if (nameCollidedObject == "enemigo4") {
-        if (timer != 0) {
-            if (timer < 0) {
-                timer = timer + 1;
+        /*if (hola.timer2 != 0) {
+            if (hola.timer2 < 0) {
+                hola.timer2 = hola.timer2 + 1;
                 Sleep(7);
             }
             else {
                 timer = timer - 1;
                 Sleep(7);
             }
-        }
-        if (timer == 0.0) {
+        }*/
+        enemigo1.ataque(timer);
+        if (enemigo1.timeOut == true) {
             MessageBox(NULL, L"Moriste", L"FIN DEL JUEGO", MB_ICONHAND || MB_ICONHAND);
             glfwTerminate();
             exit(0);
         }
     }
     if (nameCollidedObject == "enemigo5") {
-        if (timer != 0) {
+        /*if (timer != 0) {
             if (timer < 0) {
                 timer = timer + 1;
                 Sleep(7);
             }
             else {
-                timer = timer - 1;
+               timer = timer - 1;
                 Sleep(7);
             }
-        }
-        if (timer == 0.0) {
+        }*/
+        enemigo2.ataque(timer);
+        if (enemigo2.timeOut == true) {
             MessageBox(NULL, L"Moriste", L"FIN DEL JUEGO", MB_ICONHAND || MB_ICONHAND);
             glfwTerminate();
             exit(0);
         }
     }
     if (nameCollidedObject == "enemigo6") {
-        if (timer != 0) {
+        /*if (timer != 0) {
             if (timer < 0) {
                 timer = timer + 1;
                 Sleep(7);
@@ -766,15 +769,16 @@ void collidedObject_callback(string nameCollidedObject)
                 timer = timer - 1;
                 Sleep(7);
             }
-        }
-        if (timer == 0.0) {
+        }*/
+        enemigo1.ataque(timer);
+        if (enemigo1.timeOut == true) {
             MessageBox(NULL, L"Moriste", L"FIN DEL JUEGO", MB_ICONHAND || MB_ICONHAND);
             glfwTerminate();
             exit(0);
         }
     }
     if (nameCollidedObject == "enemigo7") {
-        if (timer != 0) {
+        /*if (timer != 0) {
             if (timer < 0) {
                 timer = timer + 1;
                 Sleep(7);
@@ -783,15 +787,16 @@ void collidedObject_callback(string nameCollidedObject)
                 timer = timer - 1;
                 Sleep(7);
             }
-        }
-        if (timer == 0.0) {
+        }*/
+        enemigo2.ataque(timer);
+        if (enemigo2.timeOut == true) {
             MessageBox(NULL, L"Moriste", L"FIN DEL JUEGO", MB_ICONHAND || MB_ICONHAND);
             glfwTerminate();
             exit(0);
         }
     }
     if (nameCollidedObject == "enemigo8") {
-        if (timer != 0) {
+        /*if (timer != 0) {
             if (timer < 0) {
                 timer = timer + 1;
                 Sleep(7);
@@ -800,8 +805,9 @@ void collidedObject_callback(string nameCollidedObject)
                 timer = timer - 1;
                 Sleep(7);
             }
-        }
-        if (timer == 0.0) {
+        }*/
+        enemigo1.ataque(timer);
+        if (enemigo1.timeOut == true) {
             MessageBox(NULL, L"Moriste", L"FIN DEL JUEGO", MB_ICONHAND || MB_ICONHAND);
             glfwTerminate();
             exit(0);
