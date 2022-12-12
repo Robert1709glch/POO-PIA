@@ -102,8 +102,8 @@ int main()
         }
         else {
             moveKey = true;
-            if (keyPosition.y >= 1.7f && moveKey) {
-                keyPosition.y -= 0.07f;
+            if (keyPosition.y >= 1.7f) {
+                keyPosition.y -= 0.07f * deltaTime;
             }
             else {
                 moveKey = false;
@@ -112,12 +112,12 @@ int main()
 
         glm::vec3 keyPosition2 = models[1].getPosition();
         if (keyPosition2.y <= 1.5f && !moveKey2) {
-            keyPosition2.y += 0.05f;
+            keyPosition2.y += 0.05f * deltaTime;
         }
         else {
             moveKey2 = true;
-            if (keyPosition2.y >= 1.5f && moveKey2) {
-                keyPosition2.y -= 0.05f;
+            if (keyPosition2.y >= 1.0f) {
+                keyPosition2.y -= 0.05f * deltaTime;
             }
             else {
                 moveKey2 = false;
@@ -130,13 +130,41 @@ int main()
         }
         else {
             moveKey3 = true;
-            if (keyPosition3.y >= 4.0f && moveKey3) {
-                keyPosition3.y -= 0.15f;
+            if (keyPosition3.y >= 4.0f) {
+                keyPosition3.y -= 0.15f * deltaTime;
             }
             else {
                 moveKey3 = false;
             }
         }models[2].setPosition(keyPosition3);
+
+        //:::: FISH ANIMATION :::://
+        glm::vec3 fishPos = models[28].getPosition();
+        if (fishPos.z <= 6.0f && moveFish == false) {
+            fishPos.z += 0.5f * deltaTime;
+        }
+        else {
+            moveFish = true;
+            if (fishPos.z >= 2.0f) {
+                fishPos.z -= 0.5f * deltaTime;
+            }
+            else {
+                moveFish = false;
+            }
+        }//models[28].setPosition(fishPos);
+
+        if (fishPos.y <= 0.2f && moveFish2 == false) {
+            fishPos.y += 0.1f * deltaTime;
+        }
+        else {
+            moveFish2 = true;
+            if (fishPos.y >= -0.9f) {
+                fishPos.y -= 0.5f * deltaTime;
+            }
+            else {
+                moveFish2 = false;
+            }
+        }models[28].setPosition(fishPos);
 
         //:::: FLOWER ANIMATION :::://
         glm::vec3 flowerPos = models[11].getPosition();
@@ -153,10 +181,66 @@ int main()
             }
         }models[11].setPosition(flowerPos);
 
+        //:::: DUCK ANIMATION :::://
+        //glm::vec3 duckPos = models[27].getPosition();
+        //if (duckPos.x <= -4.2f) {
+        //    duckPos.x -= 0.6f * deltaTime;
+        //}
+        //else {
+        //    moveDuck = true;
+        //    if (duckPos.x >= -5.0f) {//-8.2
+        //        duckPos.x += 0.6f * deltaTime;
+        //    }
+        //    else {
+        //        moveDuck = false;
+        //    }
+        //}models[27].setPosition(duckPos);
+
+
+        glm::vec3 posicion(enemy.getPosition());
+        if (posicion.x == camera.Position.x) {
+            enemy.setPosition(glm::vec3(camera.Position.x + i, camera.Position.y, camera.Position.z - 2));
+            i = i + 1 * deltaTime;
+            //i = 0;
+        }
+        else {
+            enemy.setPosition(glm::vec3(camera.Position.x - i, camera.Position.y, camera.Position.z - 2));
+            i = i + i * deltaTime;
+        }
+
+        /*if (i == 7) {
+            enemy.setPosition(glm::vec3(camera.Position.x + i, camera.Position.y, camera.Position.z - 2));
+            i = 0;
+            
+        }
+        else {
+            i = i + 1 * deltaTime;
+        }*/
+       /* glm::vec3 posicion(enemy.getPosition());
+        if (camera.Position.x > posicion.x + 5) {
+            enemy.setPosition(glm::vec3(camera.Position.x - i, camera.Position.y, camera.Position.z));
+            i = i - 0.5 * deltaTime;
+        }
+        if (camera.Position.x == posicion.x+5) {
+            enemy.setPosition(glm::vec3(camera.Position.x + i, camera.Position.y, camera.Position.z));
+            i = 0;
+        }
+        
+        if (camera.Position.z > posicion.z + 5) {
+            enemy.setPosition(glm::vec3(camera.Position.x, camera.Position.y, camera.Position.z - i));
+            i = i - 0.5 * deltaTime;
+        }
+        if (camera.Position.z == posicion.z +5) {
+            enemy.setPosition(glm::vec3(camera.Position.x, camera.Position.y, camera.Position.z + i));
+            i = 0;
+        }*/
+       
+
         //:::: BIRD ANIMATION :::://
         glm::vec3 birdPos = models[26].getPosition();
         glm::vec3 birdRot = models[26].getRotationAxis();
         float birdRotate = models[26].getRotation();
+
         //glm::mat4 birdRot = glm::mat4(models[26].getRotation());
         if (birdPos.z <= 4.5 && !moveBird) {
             birdPos.z -= 0.5 * deltaTime;
@@ -182,24 +266,17 @@ int main()
         //models[26].setRotationAxis(glm::vec3(birdRot, 0, 0));
         
 
-        //:::: DUCK ANIMATION :::://
-        glm::vec3 duckPos = models[27].getPosition();
-        if (duckPos.z <= 2.3f) {
-            duckPos -= 0.3f;
-        }
-        else {
-            moveDuck = true;
-            if (duckPos.z >= 5.4f) {
-                duckPos += 0.8f;
-            }
-            else {
-                moveDuck = false;
-            }
-        }
-
         //==========TEXT==========//
         //Text->RenderText("Holiwas", -0.45f, 0.7f, 0.001f, glm::vec3(0.0, 0.0, 0.0));
 
+        //:::: PUERTA :::://
+        if (isDoorOpen == true) {
+            CollisionBox collbox;
+            glm::vec4 colorCollbox(0.41f, 0.2f, 0.737f, 0.06f);
+            collbox = CollisionBox(glm::vec3(26.8704, 2.85975, 4.94002), glm::vec3(2.36, 3.46, 0.5), colorCollbox);
+            collboxes.insert(pair<int, pair<string, CollisionBox>>(6, pair<string, CollisionBox>("puerta", collbox)));
+            isDoorOpen = false;
+        }
         ////=======PARTICLES=======//
         //rains = Particles("textures/particulas/rain.png");
         ////MOVEMENT VALUES//
@@ -318,7 +395,7 @@ void initScene(Shader ourShader)
     models.push_back(Model("Bush3", "models/Bush.obj", glm::vec3(rand() % 10 - 5, -0.1, rand() % 20 - 5), glm::vec3(0, 0, 0), 0.0f, 2.2f));//7
     models.push_back(Model("Bush4", "models/Bush.obj", glm::vec3(rand() % 10 - 5, -0.1, rand() % 20 - 10), glm::vec3(0, 0, 0), 0.0f, 2.2f));//8
     models.push_back(Model("closet", "models/closet.obj", glm::vec3(16.4603, 3.29999, -7.75018), glm::vec3(0, 0, 0), 0.0f, 2.0f));//9
-    models.push_back(Model("Flower", "models/Flower.obj", glm::vec3(26.8803, 0.00999082, 5.05994), glm::vec3(0, 0, 0), 0.0f, 1.0f));//10
+    models.push_back(Model("Flower", "models/Flower.obj", glm::vec3(32.0704, -0.0900092, 13.7401), glm::vec3(0, 0, 0), 0.0f, 1.0f));//10
     models.push_back(Model("Flower2", "models/Flower.obj", glm::vec3(29.4104, -0.139999, 12.1401), glm::vec3(0, 0, 0), 0.0f, 1.0f));//11
     models.push_back(Model("Grass", "models/Grass.obj", glm::vec3(9.97011, -0.1, 14.8301), glm::vec3(0, 0, 0), 0.0f, 1.0f));//12 con initScale se pone su tamaño original
     models.push_back(Model("Grass2", "models/Grass.obj", glm::vec3(rand() % 31 + 16, -0.1, rand() % 14 + 11), glm::vec3(0, 0, 0), 0.0f, 1.0f));//13
@@ -338,14 +415,15 @@ void initScene(Shader ourShader)
     models.push_back(Model("box", "models/box.obj", glm::vec3(35.2304, 0.93, -9.30019), glm::vec3(0, 0, 0), 0.0f, 1));//25
     models.push_back(Model("birds", "models/birds.obj", glm::vec3(5, 15, 5), glm::vec3(0, 0, 0), 0.0f, 2));//26
     //                                                            -5.10004, 15,-6.39007 -> animacion
-    models.push_back(Model("duck", "models/duck.obj", glm::vec3(-11.0802, -0.58, 5.47003), glm::vec3(0, 0, 0), 0.0f, 1));//27
+    models.push_back(Model("duck", "models/duck.obj", glm::vec3(-11.0802, -0.6, 5.47003), glm::vec3(0, 0, 0), 0.0f, 1));//27
     //                                                          -11.0802, -0.58, 2.29   -> adelante
     //                                                          -14.2903, -0.58,1.52    -> diagonal
+    models.push_back(Model("fish", "models/fish.obj", glm::vec3(-13, -1.0, 0), glm::vec3(0, 0, 0), 0.0f, 0.1));//28
 
     //pickModel.push_back(Model("key", "models/key.obj", glm::vec3(7.25, 0.2, -1.66), glm::vec3(0, 0, 0), 0.0f, 0.1));
     //=======CONSTRUCTION===========//
     //models.push_back(Model("house", "models/house.obj", glm::vec3(2.21997, 3.18, -3.57007), glm::vec3(0, -269, 0), 0.0f, 1));
-    models.push_back(Model("house2", "models/house2.obj", glm::vec3(2.72, -0.1, -2), glm::vec3(0, 0, 0), 0.0f, 1));
+    models.push_back(Model("house2", "models/house2.obj", glm::vec3(2.72, 0.0, -2), glm::vec3(0, 0, 0), 0.0f, 1));
    /*
                                                               NOTE
                                     We need the .blend with all textures in the same path
@@ -373,8 +451,11 @@ void initScene(Shader ourShader)
     collboxes.insert(pair<int, pair<string, CollisionBox>>(4, pair<string, CollisionBox>("techo", collbox)));
     collbox = CollisionBox(glm::vec3(18.7502, 0.899866, -4.66011), glm::vec3(0.49, 0.5, 0.5), colorCollbox);
     collboxes.insert(pair<int, pair<string, CollisionBox>>(5, pair<string, CollisionBox>("enemigo", collbox)));
-    collbox = CollisionBox(glm::vec3(18.7502, 0.899866, -4.66011), glm::vec3(0.49, 0.5, 0.5), colorCollbox);
-    collboxes.insert(pair<int, pair<string, CollisionBox>>(6, pair<string, CollisionBox>("puerta", collbox)));
+    /*if (isDoorOpen == true) {
+        collbox = CollisionBox(glm::vec3(26.8704, 2.85975, 4.94002), glm::vec3(2.36, 3.46, 0.5), colorCollbox);
+        collboxes.insert(pair<int, pair<string, CollisionBox>>(6, pair<string, CollisionBox>("puerta", collbox)));
+    }*/
+    
 
     //OBJECT COLLISIONS
     //==========KEY COLLISTION==========//
@@ -413,8 +494,10 @@ void initScene(Shader ourShader)
     //==========BILLBOARD==========//
     //particles = Particles("textures/particulas.png");
     enemy = Billboard("textures/enemigo.png", (float)SCR_WIDTH, (float)SCR_HEIGHT, 453.5f, 768.0f);//907.0f, 1536.0f
-    enemy.setPosition(glm::vec3(18.7502, 0.0, -4.66011));//-4.0f, 0.2f, 0.0f
+    //enemy.setPosition(glm::vec3(18.7502, 0.0, -4.66011));//-4.0f, 0.2f, 0.0f
     enemy.setScale(1.5f);
+    
+    
     
     
     
@@ -434,6 +517,10 @@ void initScene(Shader ourShader)
 
     //==========GAME START==========//
     //MessageBox(NULL, L"Encuentra las 3 llaves para poder escapar\nEnter o cualquier boton para continuar", L"START", MB_ICONHAND || MB_ICONHAND);
+
+    
+    
+    
 
     //=======TEXT=======//
     Text = new TextRenderer(SCR_WIDTH, SCR_HEIGHT);

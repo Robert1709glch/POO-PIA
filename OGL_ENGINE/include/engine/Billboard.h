@@ -29,8 +29,13 @@ private:
                                       position.y - camera.Position.y,
                                       position.z - camera.Position.z);
 
+        glm::vec3 billcam2 = glm::vec3(position.x + camera.Position.x,
+            position.y + camera.Position.y,
+            position.z + camera.Position.z);
+
         glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
         glm::vec3 right = glm::normalize(glm::cross(up, billcam));
+        glm::vec3 right2 = glm::normalize(glm::cross(up, billcam2));
         right.x *= width / 2.0;
         right.z *= width / 2.0;
 

@@ -631,7 +631,9 @@ void collidedObject_callback(string nameCollidedObject)
         MessageBox(NULL, L"1/3", L"LLAVE", MB_ICONHAND || MB_ICONHAND);
         n_key = false;
         isPick = false;
-        keys + 1;
+        if (isDoorOpen == false)
+            isDoorOpen = true;
+        keys += 1;
     }
     if (nameCollidedObject == "key2" && isPick == true) {
         n_key2 = true;
@@ -645,7 +647,9 @@ void collidedObject_callback(string nameCollidedObject)
         MessageBox(NULL, L"2/3", L"LLAVE", MB_ICONHAND || MB_ICONHAND);
         n_key2 = false;
         isPick = false;
-        keys + 1;
+        if (isDoorOpen == false)
+            isDoorOpen = true;
+        keys += 1;
     }
     if (nameCollidedObject == "key3" && isPick == true) {
         n_key3 = true;
@@ -659,7 +663,9 @@ void collidedObject_callback(string nameCollidedObject)
         MessageBox(NULL, L"3/3\nESCAPA!", L"LLAVE", MB_ICONHAND || MB_ICONHAND);
         n_key3 = false;
         isPick = false;
-        keys + 1;
+        if(isDoorOpen == false)
+            isDoorOpen = true;
+        keys += 1;
     }
     if (nameCollidedObject == "enemigo") {
         MessageBox(NULL, L"Moriste", L"FIN DEL JUEGO", MB_ICONHAND || MB_ICONHAND);
@@ -672,17 +678,18 @@ void collidedObject_callback(string nameCollidedObject)
         dead.z = 0;
         models[2].setPosition(dead);*/
     }
-    if (nameCollidedObject == "Flower") {
-        n_flower = true;
+    if (nameCollidedObject == "puerta") {
+        n_exit = true;
         glm::vec3 keyPosition4 = models[9].getPosition();
         keyPosition4.x = 0;
         keyPosition4.y = 0;
         keyPosition4.z = 0;
         models[9].setPosition(keyPosition4);
     }
-    if (n_flower == true) {
+    if (n_exit == true && keys == 3) {
         MessageBox(NULL, L"3 llaves", L"GANASTE", MB_ICONHAND || MB_ICONHAND);
-        n_flower = false;
+        n_exit = false;
+        isDoorOpen = false;
         glfwTerminate();
         exit(0);
     }

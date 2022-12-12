@@ -101,6 +101,7 @@ TextRenderer* Text;
 Billboard enemy;
 float enemyX = 0.0f, enemyY = 0.0f, enemyZ = 0.0f;
 bool isMoving = true;
+float i = 0;
 
 //=====JUGABILIDAD=====//
 bool n_key = false;
@@ -110,6 +111,9 @@ bool n_flower = false;
 bool n_dead = false;
 int keys = 0;
 bool isPick = false;
+bool isDoorOpen = false;
+bool n_exit = false;
+
 
 //======DAY/NIGHT CYCLE AND WEATHER(RAIN)============//
 bool isDay = false; //TOGGLE
@@ -135,6 +139,10 @@ bool moveBird = false;
 
 //==========DUCK ANIMATION==========//
 bool moveDuck = false;
+
+//==========DUCK ANIMATION==========//
+bool moveFish = false;
+bool moveFish2 = false;
 
 
 //:::: VECTORES :::://
