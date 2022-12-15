@@ -173,6 +173,8 @@ int main()
             }
         }models[28].setPosition(fishPos);
 
+        
+
         //:::: FLOWER ANIMATION :::://
         glm::vec3 flowerPos = models[11].getPosition();
         if (flowerPos.y <= 0.0f && !moveFlower) {
@@ -190,18 +192,31 @@ int main()
 
         //:::: DUCK ANIMATION :::://
         glm::vec3 duckPos = models[27].getPosition();
-        if (duckPos.x <= -4.2f) {
-            duckPos.x -= 0.6f * deltaTime;
+        if (duckPos.x <= -12.0f && !moveDuck) {
+            duckPos.x += 0.10f * deltaTime;
+            float res = duckPos.x;
         }
         else {
             moveDuck = true;
-            if (duckPos.x >= -5.0f) {//-8.2
-                duckPos.x += 0.6f * deltaTime;
+            if (duckPos.x >= -5.0f) {
+                duckPos.x -= 0.15f * deltaTime;
             }
             else {
                 moveDuck = false;
             }
-        }models[27].setPosition(duckPos);
+        }
+        //if (duckPos.x <= -4.2f && !moveDuck) {
+        //    duckPos.x += 0.6f * deltaTime;
+        //}
+        //else {
+        //    moveDuck = true;
+        //    if (duckPos.x >= 3.0f) {//-8.2
+        //        duckPos.x += 0.6f * deltaTime;
+        //    }
+        //    else {
+        //        moveDuck = false;
+        //    }
+        //}models[27].setPosition(duckPos);
 
         /*HASTA LA PROXIMA*/
         //glm::vec3 posicion(enemy.getPosition());
@@ -449,6 +464,7 @@ void initScene(Shader ourShader)
     //                                                          -11.0802, -0.58, 2.29   -> adelante
     //                                                          -14.2903, -0.58,1.52    -> diagonal
     models.push_back(Model("fish", "models/fish.obj", glm::vec3(-13, -1.0, 0), glm::vec3(0, 0, 0), 0.0f, 0.1));//28
+    models.push_back(Model("fish", "models/fish.obj", glm::vec3(-15, -1.0, 0), glm::vec3(0, 0, 0), 0.0f, 0.1));//29
 
     //pickModel.push_back(Model("key", "models/key.obj", glm::vec3(7.25, 0.2, -1.66), glm::vec3(0, 0, 0), 0.0f, 0.1));
     //=======CONSTRUCTION===========//
@@ -603,7 +619,7 @@ void initScene(Shader ourShader)
     
 
     //==========GAME START==========//
-    //MessageBox(NULL, L"Encuentra las 3 llaves para poder escapar\nEnter o cualquier boton para continuar", L"START", MB_ICONHAND || MB_ICONHAND);
+    MessageBox(NULL, L"Encuentra las 3 llaves para poder escapar\nEnter o cualquier boton para continuar", L"START", MB_ICONHAND || MB_ICONHAND);
 
     
     
@@ -642,26 +658,26 @@ void loadEnviroment(Terrain *terrain, SkyBox *sky, glm::mat4 view, glm::mat4 pro
     loadAnim(view, projection);
 
     //========RAIN ANIMATION========//
-    //if (changeSky >= 60 && changeSky <= 60.1) {
-    //    mainLight = vec3(0.2);
-    //    //sky->reloadTexture("5");    //file name with the other sky:)
-    //    //changeSprite = !changeSprite;
-    //}
-    //if (changeSky >= 30 && changeSky <= 30.1) {
-    //    mainLight = vec3(0.25);
-    //}
-    //if (changeSky >= 60 && changeSky <= 60.1) {
-    //    mainLight = vec3(0.2);
-    //   // sky->reloadTexture("5");    //file name with the other sky:)
-    //}
-    //if (changeSky >= 90 && changeSky <= 90.1) {
-    //    mainLight = vec3(0.15);
-    //    //sky->reloadTexture("5");    //file name with the other sky:)
-    //    changeSprite = !changeSprite;
-    //}
-    //if (changeSky >= 150 && changeSky <= 150.1) {
-    //    mainLight = vec3(0.1);
-    //}
+    if (changeSky >= 60 && changeSky <= 60.1) {
+        mainLight = vec3(0.2);
+        //sky->reloadTexture("5");    //file name with the other sky:)
+        //changeSprite = !changeSprite;
+    }
+    if (changeSky >= 30 && changeSky <= 30.1) {
+        mainLight = vec3(0.25);
+    }
+    if (changeSky >= 60 && changeSky <= 60.1) {
+        mainLight = vec3(0.2);
+       // sky->reloadTexture("5");    //file name with the other sky:)
+    }
+    if (changeSky >= 90 && changeSky <= 90.1) {
+        mainLight = vec3(0.15);
+        //sky->reloadTexture("5");    //file name with the other sky:)
+        changeSprite = !changeSprite;
+    }
+    if (changeSky >= 150 && changeSky <= 150.1) {
+        mainLight = vec3(0.1);
+    }
 
    
     //glm::vec3(enemyPos) = enemy.getPosition();      //cambiar para utilizar un getPosition de la camara y un setPosition para

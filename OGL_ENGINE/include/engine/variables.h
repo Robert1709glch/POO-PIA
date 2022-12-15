@@ -155,6 +155,8 @@ bool moveDuck = false;
 //==========FISH ANIMATION==========//
 bool moveFish = false;
 bool moveFish2 = false;
+bool moveFish3 = false;
+bool moveFish4 = false;
 
 //==========ROTACIONES==========//
 float skyRotation;
